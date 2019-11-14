@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import java.awt.Toolkit;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -34,7 +35,8 @@ public class VentanaPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaPrincipal() {
-		setTitle("Manejador Matematico de Prisma");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/Imagenes/casa.png")));
+		setTitle("Men\u00FA Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 578, 365);
 		
@@ -62,10 +64,10 @@ public class VentanaPrincipal extends JFrame {
 		JMenuItem mntmListado = new JMenuItem("Listado ");
 		mnEstudiante.add(mntmListado);
 		
-		JMenu mnFunciones = new JMenu("Funciones");
+		JMenu mnFunciones = new JMenu("Reporte");
 		menuBar.add(mnFunciones);
 		
-		JMenu mnReporte = new JMenu("Reporte");
+		JMenu mnReporte = new JMenu("Aplicaciones");
 		menuBar.add(mnReporte);
 		
 		JMenu mnConfiguracion = new JMenu("Configuracion");

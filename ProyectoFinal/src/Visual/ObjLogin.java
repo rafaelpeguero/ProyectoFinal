@@ -34,6 +34,7 @@ public class ObjLogin extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
+			
 			ObjLogin dialog = new ObjLogin();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);

@@ -285,10 +285,18 @@ public class ObjtHerramienta extends JFrame {
 		panelBtns.add(btnSalir);
 		
 		JButton btnCalcular = new JButton("Calcular");
+		btnCalcular.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnCalcular.setBounds(332, 11, 89, 23);
 		panelBtns.add(btnCalcular);
 		
 		JButton btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnLimpiar.setBounds(431, 11, 89, 23);
 		panelBtns.add(btnLimpiar);
 	}

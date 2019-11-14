@@ -10,6 +10,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -73,8 +76,19 @@ public class VentanaPrincipal extends JFrame {
 		JMenu mnConfiguracion = new JMenu("Configuracion");
 		menuBar.add(mnConfiguracion);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Imagenes/images.png")));
+		label.setBounds(10, 70, 400, 135);
+		contentPane.add(label);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Imagenes/cuadros-en-lienzo-fondo-geometrico-suave-en-colores-pastel-abstracto-con-degradados-vector.jpg")));
+		label_1.setBounds(115, -33, 591, 355);
+		contentPane.add(label_1);
 	}
 }

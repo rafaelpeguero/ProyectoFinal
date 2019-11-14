@@ -58,24 +58,6 @@ public class ObjLogin extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel lblUsuario = new JLabel("Tipo :");
-			lblUsuario.setFont(new Font("Yu Gothic", Font.BOLD, 15));
-			lblUsuario.setBounds(85, 86, 41, 20);
-			contentPanel.add(lblUsuario);
-		}
-		{
-			JLabel lblUsuario_1 = new JLabel("Usuario :");
-			lblUsuario_1.setFont(new Font("Yu Gothic", Font.BOLD, 15));
-			lblUsuario_1.setBounds(60, 117, 66, 20);
-			contentPanel.add(lblUsuario_1);
-		}
-		{
-			JLabel lblContrasea = new JLabel("Contrase\u00F1a :");
-			lblContrasea.setFont(new Font("Yu Gothic", Font.BOLD, 15));
-			lblContrasea.setBounds(32, 148, 94, 20);
-			contentPanel.add(lblContrasea);
-		}
-		{
 			textusuario = new JTextField();
 			textusuario.setBounds(132, 118, 111, 20);
 			contentPanel.add(textusuario);
@@ -88,10 +70,6 @@ public class ObjLogin extends JDialog {
 			txtcontrasena.setBounds(132, 149, 111, 20);
 			contentPanel.add(txtcontrasena);
 		}
-		
-		JComboBox cmbtipousuario = new JComboBox();
-		cmbtipousuario.setBounds(132, 87, 111, 20);
-		contentPanel.add(cmbtipousuario);
 		
 		JButton btnEntrar = new JButton("Entrar");
 		btnEntrar.setBounds(99, 190, 89, 23);
@@ -112,6 +90,16 @@ public class ObjLogin extends JDialog {
 		label.setIcon(new ImageIcon(ObjLogin.class.getResource("/Imagenes/lol.png")));
 		label.setBounds(-140, -105, 423, 482);
 		contentPanel.add(label);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setBounds(43, 106, 46, 14);
+		contentPanel.add(label_1);
+		{
+			JLabel label_2 = new JLabel("");
+			label_2.setIcon(new ImageIcon(ObjLogin.class.getResource("/Imagenes/310869.png")));
+			label_2.setBounds(53, 121, 46, 14);
+			contentPanel.add(label_2);
+		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));

@@ -12,6 +12,16 @@ public class CalcGeometrica {
 	 
 	}
 	public double cuadArea(double x1,double x2, double y1, double y2){//Vx2
+		double x3,x4,y3,y4,aux1,aux2;
+		
+		aux1= x2-x1, aux2 = y2-y1; //Vector que union entre los Vertices
+		
+		x3 = x1 + aux1, y3 = y1 + aux2; // V3 Encontrado
+		x4 = x2 + aux1, y4 = y2 + aux2; // V4 Encontrado
+		
+		//Para calcular el área del cuadrilátero vamos a utilizar la fórmula de Herón:
+
+
 	
 	}
 	public double triaArea(double x1,double x2,double x3,double x4, double y1, double y2,double y3,double y4){//Vx4
@@ -29,6 +39,17 @@ public class CalcGeometrica {
 	public double trapArea(double x1,double x2,double x3,double x4, double y1, double y2,double y3,double y4){//Vx4
 	
 	}
+	
+	public double distanciaAB(double x1, double x2, double y1, double y2 ){
+	
+		double s;
+		
+		s = Math.sqrt( Math.pow((x2 - x1),2) + Math.pow((y2 - y1),2) );
+		
+		return s;
+		
+	}
+		
 	
 	
 

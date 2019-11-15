@@ -49,7 +49,7 @@ public class ObjLogin extends JDialog {
 	public ObjLogin() {
 		setResizable(false);
 		setTitle("Login");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(ObjLogin.class.getResource("/Imagenes/icons8-bloquear-64.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ObjLogin.class.getResource("/Images/icons8-importar-100.png")));
 		setBounds(100, 100, 288, 342);
 		this.setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -85,11 +85,6 @@ public class ObjLogin extends JDialog {
 			label.setBounds(114, 0, 66, 98);
 			contentPanel.add(label);
 		}
-		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(ObjLogin.class.getResource("/Imagenes/lol.png")));
-		label.setBounds(-140, -105, 423, 482);
-		contentPanel.add(label);
 		
 		JLabel label_1 = new JLabel("");
 		label_1.setBounds(43, 106, 46, 14);

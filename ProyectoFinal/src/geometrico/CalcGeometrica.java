@@ -12,6 +12,7 @@ public class CalcGeometrica {
 	 
 	}
 	public double cuadArea(double x1,double x2, double y1, double y2){//Vx2
+		double area,s; 
 		double x3,x4,y3,y4,aux1,aux2;
 		
 		aux1= x2-x1, aux2 = y2-y1; //Vector que union entre los Vertices
@@ -20,6 +21,12 @@ public class CalcGeometrica {
 		x4 = x2 + aux1, y4 = y2 + aux2; // V4 Encontrado
 		
 		//Para calcular el área del cuadrilátero vamos a utilizar la fórmula de Herón:
+		
+		s = (s1+s2+s3)/2.0d;
+		
+		area = Math.sqrt( s * (s - s1) * (s - s2) * (s - s3) );
+		
+		return area;
 
 
 	

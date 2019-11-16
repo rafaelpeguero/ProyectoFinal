@@ -24,10 +24,10 @@ public class Rectangulo extends FiguraPlana {
 	  System.out.println("Area: " + r.Areabase());
 	  
  }*/
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		
 		System.out.println("Hola");
-	}
+	}*/
 	
 	
 	

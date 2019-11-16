@@ -34,4 +34,18 @@ public class Rombo extends FiguraPlana {
 		return false;
 	}
 
+
+	@Override
+	public double Areabase() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public double Perimetro() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

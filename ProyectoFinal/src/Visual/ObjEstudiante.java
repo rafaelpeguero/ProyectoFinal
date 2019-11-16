@@ -13,8 +13,13 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
+@SuppressWarnings("unused")
 public class ObjEstudiante extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtNombre;
 	private JTextField txtId;
@@ -23,7 +28,7 @@ public class ObjEstudiante extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -34,7 +39,7 @@ public class ObjEstudiante extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
@@ -76,6 +81,7 @@ public class ObjEstudiante extends JFrame {
 		panel_1.add(txtId);
 		txtId.setColumns(10);
 		
+		@SuppressWarnings("rawtypes")
 		JComboBox cbxSexo = new JComboBox();
 		cbxSexo.setBounds(68, 75, 96, 18);
 		panel_1.add(cbxSexo);

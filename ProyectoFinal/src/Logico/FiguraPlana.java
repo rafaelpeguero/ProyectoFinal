@@ -5,7 +5,7 @@ package Logico;
 public abstract class FiguraPlana {
 	
 	protected Vertice verticeA,verticeB,verticeC,verticeD;
-	protected float alturaPrisma;
+	protected double alturaPrisma;
 	protected String tipoPrisma;
 	
 	
@@ -35,12 +35,18 @@ public abstract class FiguraPlana {
 		this.alturaPrisma = alturaPrisma;
 		this.tipoPrisma = tipoPrisma;
 	}
+	public FiguraPlana(double alturaPrisma, String tipoPrisma) {
+		super();
+		this.alturaPrisma = alturaPrisma;
+		this.tipoPrisma = tipoPrisma;
+	}
 	
 	
 	public abstract float Volumen();
 	public abstract float AreaLateral();
 	public abstract float AreasTotales();
 	public abstract boolean Validador();
-	
+	public abstract double Areabase();
+	public abstract double Perimetro();
 
 }

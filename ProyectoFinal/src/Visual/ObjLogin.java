@@ -23,8 +23,13 @@ import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 
+@SuppressWarnings("unused")
 public class ObjLogin extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textusuario;
 	private JTextField txtcontrasena;
@@ -32,7 +37,7 @@ public class ObjLogin extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
 			
 			ObjLogin dialog = new ObjLogin();
@@ -41,7 +46,7 @@ public class ObjLogin extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	/**
 	 * Create the dialog.

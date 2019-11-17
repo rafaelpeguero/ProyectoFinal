@@ -37,7 +37,7 @@ public class ObjLogin extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		try {
 			
 			ObjLogin dialog = new ObjLogin();
@@ -46,7 +46,7 @@ public class ObjLogin extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 
 	/**
 	 * Create the dialog.

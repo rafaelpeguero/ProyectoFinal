@@ -4,26 +4,27 @@ public class Rectangulo extends FiguraPlana {
 	
 	
 	private double base = 0, altura = 0;
-	@SuppressWarnings("unused")
 	private double x1 = 0, x2 = 0, x3 = 0, x4 = 0;
-	@SuppressWarnings("unused")
 	private double y1 = 0, y2 = 0, y3 = 0, y4 = 0;
 
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 	  
 	 Rectangulo r = new Rectangulo(0, null, 0, 0, 0, 0, 0, 0);
 	  //double n;		  
 			  
-	  r.setX1(6.0d); r.setX2(3.0d); r.setX3(-3.0d);
-	  r.setY1(4.0d); r.setY2(-1.0d); r.setY3(-2.0d);
+	  //r.setX1(6.0d); r.setX2(3.0d); r.setX3(-3.0d);
+	 // r.setY1(4.0d); r.setY2(-1.0d); r.setY3(-2.0d);
+	  
+	  r.setX1(26.0d); r.setX2(26.0d); r.setX3(10.0d);
+	  r.setY1(23.0d); r.setY2(23.0d); r.setY3(7.0d);
 	  
 	  
 	  //n = r.Areabase();
 	  
 	  System.out.println("Area: " + r.Areabase());
 	  
- }*/
+ }
 	/*public static void main(String[] args) {
 		
 		System.out.println("Hola");

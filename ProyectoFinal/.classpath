@@ -2,8 +2,5 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/Rolli/Downloads/libr/j3d-1_5_2-windows-amd64/lib/ext/j3dcore.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Rolli/Downloads/libr/j3d-1_5_2-windows-amd64/lib/ext/j3dutils.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Rolli/Downloads/libr/j3d-1_5_2-windows-amd64/lib/ext/vecmath.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -4,13 +4,13 @@ package Logico;
 
 public abstract class FiguraPlana {
 	
-	protected Vertice verticeA,verticeB,verticeC,verticeD;
+	///protected Vertice verticeA,verticeB,verticeC,verticeD;
 	protected double alturaPrisma;
 	protected String tipoPrisma;
 	
 	
 //CONSTRUCTORES PARA LAS DIFERENS FIGURAS SEGUN SU CANTIDAD DE VERTICES
-	public FiguraPlana(Vertice verticeA, Vertice verticeB, Vertice verticeC, Vertice verticeD,float alturaPrisma,String tipoPrisma) {
+	/*public FiguraPlana(Vertice verticeA, Vertice verticeB, Vertice verticeC, Vertice verticeD,float alturaPrisma,String tipoPrisma) {
 		super();
 		this.verticeA = verticeA;
 		this.verticeB = verticeB;
@@ -34,7 +34,7 @@ public abstract class FiguraPlana {
 		this.verticeB = verticeB;
 		this.alturaPrisma = alturaPrisma;
 		this.tipoPrisma = tipoPrisma;
-	}
+	}*/
 	public FiguraPlana(double alturaPrisma, String tipoPrisma) {
 		super();
 		this.alturaPrisma = alturaPrisma;

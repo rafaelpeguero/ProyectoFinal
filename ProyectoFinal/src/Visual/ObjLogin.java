@@ -64,6 +64,11 @@ public class ObjLogin extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			textusuario = new JTextField();
+			textusuario.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
 			textusuario.setEnabled(false);
 			textusuario.setToolTipText("");
 			textusuario.setText("usuario");

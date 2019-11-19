@@ -172,7 +172,7 @@ public class ObjtHerramienta extends JFrame {
 				
 			}
 		});
-		cbxPrismas.setModel(new DefaultComboBoxModel<String>(new Strin[] {"< Seleccione > ", "Cuadrado", "Rombo", "Rectangulo", "Triangulo", "Trapecio"}));
+		cbxPrismas.setModel(new DefaultComboBoxModel<String>(new String[] {"< Seleccione > ", "Cuadrado", "Rombo", "Rectangulo", "Triangulo", "Trapecio"}));
 		cbxPrismas.setBounds(80, 24, 150, 22);
 		panelDatos.add(cbxPrismas);
 		
@@ -215,7 +215,7 @@ public class ObjtHerramienta extends JFrame {
 				msgFormatoErroneo(e);
 			}
 		});
-		txtVAi.setText("x1");
+		txtVAi.setText("x1\r\n");
 		txtVAi.setEnabled(false);
 		txtVAi.setBounds(80, 59, 31, 20);
 		panelDatos.add(txtVAi);
@@ -254,7 +254,7 @@ public class ObjtHerramienta extends JFrame {
 				msgFormatoErroneo(e);
 			}
 		});
-		txtVBii.setText("y2");
+		txtVBii.setText("y2\r\n");
 		txtVBii.setEnabled(false);
 		txtVBii.setBounds(124, 92, 31, 20);
 		panelDatos.add(txtVBii);
@@ -267,7 +267,7 @@ public class ObjtHerramienta extends JFrame {
 				msgFormatoErroneo(e);
 			}
 		});
-		txtVCi.setText("x3");
+		txtVCi.setText("x3\r\n");
 		txtVCi.setEnabled(false);
 		txtVCi.setBounds(80, 125, 31, 20);
 		panelDatos.add(txtVCi);
@@ -280,7 +280,7 @@ public class ObjtHerramienta extends JFrame {
 				msgFormatoErroneo(e);
 			}
 		});
-		txtVCii.setText("y3");
+		txtVCii.setText("y3\r\n");
 		txtVCii.setEnabled(false);
 		txtVCii.setBounds(124, 125, 31, 20);
 		panelDatos.add(txtVCii);
@@ -293,7 +293,7 @@ public class ObjtHerramienta extends JFrame {
 				msgFormatoErroneo(e);
 			}
 		});
-		txtVDi.setText("x4");
+		txtVDi.setText("x4\r\n");
 		txtVDi.setEnabled(false);
 		txtVDi.setBounds(80, 158, 31, 20);
 		panelDatos.add(txtVDi);
@@ -384,6 +384,10 @@ public class ObjtHerramienta extends JFrame {
 		JButton btnCalcular = new JButton("Calcular");
 		btnCalcular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String tipo ;//= "Cuadrado"; //Prueba;
+				tipo = String.valueOf(cbxPrismas.getSelectedItem()) ;			
+//				tipo = cbxPrismas.getItemAt( cbxPrismas.getSelectedItem() );
+				calcular(tipo);
 				
 			}
 		});
@@ -408,6 +412,7 @@ public class ObjtHerramienta extends JFrame {
 				txtALprisma.setText(null);
 				txtATprisma.setText(null);
 				
+				cbxPrismas.setSelectedIndex(0);
 				
 			}
 		});
@@ -425,35 +430,97 @@ public class ObjtHerramienta extends JFrame {
 	}
 	public void calcular(String tipo ) {
 		
+		txtVbase.setEnabled(true);
+		txtVLprisma.setEnabled(true);
+		txtALprisma.setEnabled(true);
+		txtATprisma.setEnabled(true);
+		
 		switch (tipo) {
+		
 		case "Cuadrado" :{
-			double Abase;
-			double Vbase;
-			double VLprisma;
-			double VTprisma;
+			double Abase = 0;
+			double Vbase = 2;
+			double VLprisma = 0;
+			double VTprisma = 0;
+			double ALprisma = 0;
+			double ATprisma = 0;
+			
 				
-			txtVbase.setText();
-			txtVLprisma.setText();
-			txtVbase.setText();
-			txtALprisma.setText();
-			txtATprisma.setText();
+			txtVbase.setText( String.valueOf(Vbase));
+			txtVLprisma.setText(String.valueOf(VLprisma));
+			txtALprisma.setText(String.valueOf(ALprisma));
+			txtATprisma.setText(String.valueOf(ATprisma));
+			
+			break;
 				
 		}
 		case "Rombo" :{
+			double Abase = 0;
+			double Vbase = 0;
+			double VLprisma = 0;
+			double VTprisma = 0;
+			double ALprisma = 0;
+			double ATprisma = 3;
 			
+				
+			txtVbase.setText( String.valueOf(Vbase));
+			txtVLprisma.setText(String.valueOf(VLprisma));
+			txtALprisma.setText(String.valueOf(ALprisma));
+			txtATprisma.setText(String.valueOf(ATprisma));
+			
+			break;
 		}
 		case "Rectangulo" :{
+			double Abase = 0;
+			double Vbase = 0;
+			double VLprisma = 0;
+			double VTprisma = 0;
+			double ALprisma = 4;
+			double ATprisma = 0;
 			
+				
+			txtVbase.setText( String.valueOf(Vbase));
+			txtVLprisma.setText(String.valueOf(VLprisma));
+			txtALprisma.setText(String.valueOf(ALprisma));
+			txtATprisma.setText(String.valueOf(ATprisma));
+			
+			break;
 		}
 		case "Triangulo" :{
+			double Abase = 0;
+			double Vbase = 0;
+			double VLprisma = 5;
+			double VTprisma = 0;
+			double ALprisma = 0;
+			double ATprisma = 0;
 			
+				
+			txtVbase.setText( String.valueOf(Vbase));
+			txtVLprisma.setText(String.valueOf(VLprisma));
+			txtALprisma.setText(String.valueOf(ALprisma));
+			txtATprisma.setText(String.valueOf(ATprisma));
+			
+			break;
 		}
 		case "Trapecio" :{
+			double Abase = 0;
+			double Vbase = 0;
+			double VLprisma = 6;
+			double VTprisma = 0;
+			double ALprisma = 0;
+			double ATprisma = 0;
 			
+				
+			txtVbase.setText( String.valueOf(Vbase));
+			txtVLprisma.setText(String.valueOf(VLprisma));
+			txtALprisma.setText(String.valueOf(ALprisma));
+			txtATprisma.setText(String.valueOf(ATprisma));
+			
+			break;
 		}
 		
 		default : {
-			JOptionPane.showMessageDialog(null, JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null , JOptionPane.ERROR_MESSAGE);
 		}
 		
 		}

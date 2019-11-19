@@ -8,12 +8,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("unused")
 public class ObjtHerramienta extends JFrame {
@@ -89,6 +92,11 @@ public class ObjtHerramienta extends JFrame {
 					txtVAii.setEnabled(true);
 					txtVBi.setEnabled(true);
 					txtVBii.setEnabled(true);
+					
+					txtVAi.setText(null);
+					txtVAii.setText(null);
+					txtVBi.setText(null);
+					txtVBii.setText(null);
 					
 				}if(cbxPrismas.getSelectedIndex()==2) { //ROMBO
 					txtVAi.setEnabled(true);
@@ -168,48 +176,67 @@ public class ObjtHerramienta extends JFrame {
 		panelDatos.add(label_3);
 		
 		txtVAi = new JTextField();
+		txtVAi.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char caracter = e.getKeyChar(); //captura
+				if( (caracter < '0') || (caracter > '9') ) {
+					e.consume();
+					JOptionPane.showMessageDialog(null, "Formato incorecto, solo se permiten numeros", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+					
+				}
+			}
+		});
+		txtVAi.setText("x1");
 		txtVAi.setEnabled(false);
 		txtVAi.setBounds(80, 48, 31, 20);
 		panelDatos.add(txtVAi);
 		txtVAi.setColumns(10);
 		
 		txtVAii = new JTextField();
+		txtVAii.setText("y1\r\n");
 		txtVAii.setEnabled(false);
 		txtVAii.setBounds(121, 48, 34, 20);
 		panelDatos.add(txtVAii);
 		txtVAii.setColumns(10);
 		
 		txtVBi = new JTextField();
+		txtVBi.setText("x2");
 		txtVBi.setEnabled(false);
 		txtVBi.setBounds(80, 81, 31, 20);
 		panelDatos.add(txtVBi);
 		txtVBi.setColumns(10);
 		
 		txtVBii = new JTextField();
+		txtVBii.setText("y2");
 		txtVBii.setEnabled(false);
 		txtVBii.setBounds(124, 81, 31, 20);
 		panelDatos.add(txtVBii);
 		txtVBii.setColumns(10);
 		
 		txtVCi = new JTextField();
+		txtVCi.setText("x3");
 		txtVCi.setEnabled(false);
 		txtVCi.setBounds(80, 114, 31, 20);
 		panelDatos.add(txtVCi);
 		txtVCi.setColumns(10);
 		
 		txtVCii = new JTextField();
+		txtVCii.setText("y3");
 		txtVCii.setEnabled(false);
 		txtVCii.setBounds(124, 114, 31, 20);
 		panelDatos.add(txtVCii);
 		txtVCii.setColumns(10);
 		
 		txtVDi = new JTextField();
+		txtVDi.setText("x4");
 		txtVDi.setEnabled(false);
 		txtVDi.setBounds(80, 147, 31, 20);
 		panelDatos.add(txtVDi);
 		txtVDi.setColumns(10);
 		
 		txtVDii = new JTextField();
+		txtVDii.setText("y4\r\n");
 		txtVDii.setEnabled(false);
 		txtVDii.setBounds(124, 147, 31, 20);
 		panelDatos.add(txtVDii);
@@ -227,46 +254,46 @@ public class ObjtHerramienta extends JFrame {
 		panelResultados.setLayout(null);
 		
 		JLabel lblVolumenPrisma = new JLabel("Volumen Prisma : ");
-		lblVolumenPrisma.setBounds(22, 66, 89, 14);
+		lblVolumenPrisma.setBounds(22, 66, 124, 14);
 		panelResultados.add(lblVolumenPrisma);
 		
 		JLabel lblVolumenBase = new JLabel("Volumen Base : ");
-		lblVolumenBase.setBounds(22, 26, 79, 14);
+		lblVolumenBase.setBounds(22, 26, 124, 14);
 		panelResultados.add(lblVolumenBase);
 		
 		JLabel lblAreaLateralPrisma = new JLabel("Area Lateral Prisma :");
-		lblAreaLateralPrisma.setBounds(22, 106, 103, 14);
+		lblAreaLateralPrisma.setBounds(22, 106, 124, 14);
 		panelResultados.add(lblAreaLateralPrisma);
 		
 		JLabel lblAreraTotalPrisma = new JLabel("Arera Total Prisma :");
-		lblAreraTotalPrisma.setBounds(22, 146, 98, 14);
+		lblAreraTotalPrisma.setBounds(22, 146, 124, 14);
 		panelResultados.add(lblAreraTotalPrisma);
 		
 		txtVbase = new JTextField();
 		txtVbase.setEditable(false);
 		txtVbase.setEnabled(false);
-		txtVbase.setBounds(140, 21, 70, 20);
+		txtVbase.setBounds(147, 23, 70, 20);
 		panelResultados.add(txtVbase);
 		txtVbase.setColumns(10);
 		
 		txtVLprisma = new JTextField();
 		txtVLprisma.setEditable(false);
 		txtVLprisma.setEnabled(false);
-		txtVLprisma.setBounds(140, 62, 70, 20);
+		txtVLprisma.setBounds(147, 63, 70, 20);
 		panelResultados.add(txtVLprisma);
 		txtVLprisma.setColumns(10);
 		
 		txtALprisma = new JTextField();
 		txtALprisma.setEditable(false);
 		txtALprisma.setEnabled(false);
-		txtALprisma.setBounds(140, 103, 70, 20);
+		txtALprisma.setBounds(147, 103, 70, 20);
 		panelResultados.add(txtALprisma);
 		txtALprisma.setColumns(10);
 		
 		txtATprisma = new JTextField();
 		txtATprisma.setEditable(false);
 		txtATprisma.setEnabled(false);
-		txtATprisma.setBounds(140, 144, 70, 20);
+		txtATprisma.setBounds(147, 143, 70, 20);
 		panelResultados.add(txtATprisma);
 		txtATprisma.setColumns(10);
 		
@@ -281,7 +308,7 @@ public class ObjtHerramienta extends JFrame {
 				dispose();
 			}
 		});
-		btnSalir.setBounds(530, 11, 55, 23);
+		btnSalir.setBounds(525, 11, 60, 23);
 		panelBtns.add(btnSalir);
 		
 		JButton btnCalcular = new JButton("Calcular");
@@ -289,7 +316,7 @@ public class ObjtHerramienta extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnCalcular.setBounds(332, 11, 89, 23);
+		btnCalcular.setBounds(327, 11, 89, 23);
 		panelBtns.add(btnCalcular);
 		
 		JButton btnLimpiar = new JButton("Limpiar");
@@ -297,7 +324,7 @@ public class ObjtHerramienta extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnLimpiar.setBounds(431, 11, 89, 23);
+		btnLimpiar.setBounds(426, 11, 89, 23);
 		panelBtns.add(btnLimpiar);
 	}
 }

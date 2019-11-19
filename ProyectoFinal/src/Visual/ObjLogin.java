@@ -64,15 +64,20 @@ public class ObjLogin extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			textusuario = new JTextField();
-			textusuario.setBounds(132, 118, 111, 20);
+			textusuario.setEnabled(false);
+			textusuario.setToolTipText("");
+			textusuario.setText("usuario");
+			textusuario.setBounds(88, 114, 111, 20);
 			contentPanel.add(textusuario);
 			textusuario.setColumns(10);
 		}
 		{
 			txtcontrasena = new JTextField();
+			txtcontrasena.setEnabled(false);
+			txtcontrasena.setText("contrase\u00F1a");
 			txtcontrasena.setName("txtcontrasena");
 			txtcontrasena.setColumns(10);
-			txtcontrasena.setBounds(132, 149, 111, 20);
+			txtcontrasena.setBounds(88, 145, 111, 20);
 			contentPanel.add(txtcontrasena);
 		}
 		
@@ -94,12 +99,6 @@ public class ObjLogin extends JDialog {
 		JLabel label_1 = new JLabel("");
 		label_1.setBounds(43, 106, 46, 14);
 		contentPanel.add(label_1);
-		{
-			JLabel label_2 = new JLabel("");
-			label_2.setIcon(new ImageIcon(ObjLogin.class.getResource("/Imagenes/310869.png")));
-			label_2.setBounds(53, 121, 46, 14);
-			contentPanel.add(label_2);
-		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));

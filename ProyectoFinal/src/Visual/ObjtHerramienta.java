@@ -172,7 +172,7 @@ public class ObjtHerramienta extends JFrame {
 				
 			}
 		});
-		cbxPrismas.setModel(new DefaultComboBoxModel<String>(new String[] {"< Seleccione > ", "Cuadrado", "Rombo", "Rectangulo", "Triangulo", "Trapecio"}));
+		cbxPrismas.setModel(new DefaultComboBoxModel<String>(new Strin[] {"< Seleccione > ", "Cuadrado", "Rombo", "Rectangulo", "Triangulo", "Trapecio"}));
 		cbxPrismas.setBounds(80, 24, 150, 22);
 		panelDatos.add(cbxPrismas);
 		
@@ -427,7 +427,17 @@ public class ObjtHerramienta extends JFrame {
 		
 		switch (tipo) {
 		case "Cuadrado" :{
-			
+			double Abase;
+			double Vbase;
+			double VLprisma;
+			double VTprisma;
+				
+			txtVbase.setText();
+			txtVLprisma.setText();
+			txtVbase.setText();
+			txtALprisma.setText();
+			txtATprisma.setText();
+				
 		}
 		case "Rombo" :{
 			

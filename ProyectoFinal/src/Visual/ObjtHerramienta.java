@@ -87,6 +87,7 @@ public class ObjtHerramienta extends JFrame {
 		 cbxPrismas = new JComboBox<String>();
 		cbxPrismas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				defaultVertice();
 				if(cbxPrismas.getSelectedIndex()==1) { //CUADRADO
 					txtVAi.setEnabled(true);
 					txtVAii.setEnabled(true);
@@ -314,7 +315,7 @@ public class ObjtHerramienta extends JFrame {
 		
 		JPanel panelFigura = new JPanel();
 		panelFigura.setBorder(new TitledBorder(null, "Figura 3D", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelFigura.setBounds(292, 19, 313, 384);
+		panelFigura.setBounds(292, 11, 313, 392);
 		contentPane.add(panelFigura);
 		
 		JPanel panelResultados = new JPanel();
@@ -413,6 +414,8 @@ public class ObjtHerramienta extends JFrame {
 				txtATprisma.setText(null);
 				
 				cbxPrismas.setSelectedIndex(0);
+				cbxPrismas.setEnabled(true);
+				defaultVertice();
 				
 			}
 		});
@@ -526,6 +529,17 @@ public class ObjtHerramienta extends JFrame {
 		}
 		
 		
+	}
+	
+	public void defaultVertice() {
+		txtVAi.setEnabled(false);
+		txtVAii.setEnabled(false);
+		txtVBi.setEnabled(false);
+		txtVBii.setEnabled(false);
+		txtVCi.setEnabled(false);
+		txtVCii.setEnabled(false);
+		txtVDi.setEnabled(false);
+		txtVDii.setEnabled(false);
 	}
 		
 	

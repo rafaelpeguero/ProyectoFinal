@@ -22,6 +22,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
+import javax.swing.JPasswordField;
 
 @SuppressWarnings("unused")
 public class ObjLogin extends JDialog {
@@ -32,7 +33,7 @@ public class ObjLogin extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textusuario;
-	private JTextField txtcontrasena;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -54,8 +55,8 @@ public class ObjLogin extends JDialog {
 	public ObjLogin() {
 		setResizable(false);
 		setTitle("Login");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(ObjLogin.class.getResource("/Images/icons8-importar-100.png")));
-		setBounds(100, 100, 288, 256);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ObjLogin.class.getResource("/Images/login.png")));
+		setBounds(100, 100, 356, 197);
 		this.setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(102, 153, 153));
@@ -64,6 +65,7 @@ public class ObjLogin extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			textusuario = new JTextField();
+			textusuario.setFont(new Font("Segoe UI", Font.BOLD, 12));
 			textusuario.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
@@ -74,29 +76,18 @@ public class ObjLogin extends JDialog {
 			label_2.setIcon(new ImageIcon(ObjLogin.class.getResource("/Images/bloquear.png")));
 			label_2.setBounds(45, 75, 29, 30);
 			contentPanel.add(label_2);
-			textusuario.setEnabled(false);
 			textusuario.setToolTipText("");
-			textusuario.setText("usuario");
 			textusuario.setBounds(74, 34, 141, 30);
 			contentPanel.add(textusuario);
 			textusuario.setColumns(10);
 		}
-		{
-			txtcontrasena = new JTextField();
-			txtcontrasena.setEnabled(false);
-			txtcontrasena.setText("contrase\u00F1a");
-			txtcontrasena.setName("txtcontrasena");
-			txtcontrasena.setColumns(10);
-			txtcontrasena.setBounds(74, 75, 141, 30);
-			contentPanel.add(txtcontrasena);
-		}
 		
 		JButton btnEntrar = new JButton("Entrar");
-		btnEntrar.setBounds(98, 124, 89, 23);
+		btnEntrar.setBounds(239, 41, 89, 23);
 		contentPanel.add(btnEntrar);
 		{
 			JButton btnregistrar = new JButton("Registrar");
-			btnregistrar.setBounds(98, 155, 89, 23);
+			btnregistrar.setBounds(239, 75, 89, 23);
 			contentPanel.add(btnregistrar);
 		}
 		
@@ -105,9 +96,17 @@ public class ObjLogin extends JDialog {
 		label_1.setBounds(45, 34, 29, 30);
 		contentPanel.add(label_1);
 		
+		passwordField = new JPasswordField();
+		passwordField.setForeground(new Color(0, 0, 0));
+		passwordField.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		passwordField.setEchoChar('*');
+		passwordField.setName("txtcontrasena");
+		passwordField.setBounds(74, 75, 141, 30);
+		contentPanel.add(passwordField);
+		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(ObjLogin.class.getResource("/Images/fod.png")));
-		label.setBounds(-87, -20, 369, 262);
+		label.setBounds(-19, -82, 369, 262);
 		contentPanel.add(label);
 		{
 			JPanel buttonPane = new JPanel();

@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 @SuppressWarnings("unused")
 public class ObjtHerramienta extends JFrame {
@@ -65,6 +66,7 @@ public class ObjtHerramienta extends JFrame {
 	 * Create the frame.
 	 */
 	public ObjtHerramienta() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ObjtHerramienta.class.getResource("/Images/Cube.png")));
 		setResizable(false);
 		setTitle("Herramienta Geometrica 3D");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

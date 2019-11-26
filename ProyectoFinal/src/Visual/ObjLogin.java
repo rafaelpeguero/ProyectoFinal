@@ -55,7 +55,7 @@ public class ObjLogin extends JDialog {
 		setResizable(false);
 		setTitle("Login");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ObjLogin.class.getResource("/Images/icons8-importar-100.png")));
-		setBounds(100, 100, 288, 342);
+		setBounds(100, 100, 288, 256);
 		this.setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(102, 153, 153));
@@ -69,10 +69,15 @@ public class ObjLogin extends JDialog {
 					
 				}
 			});
+			
+			JLabel label_2 = new JLabel("");
+			label_2.setIcon(new ImageIcon(ObjLogin.class.getResource("/Images/bloquear.png")));
+			label_2.setBounds(45, 75, 29, 30);
+			contentPanel.add(label_2);
 			textusuario.setEnabled(false);
 			textusuario.setToolTipText("");
 			textusuario.setText("usuario");
-			textusuario.setBounds(88, 114, 111, 20);
+			textusuario.setBounds(74, 34, 141, 30);
 			contentPanel.add(textusuario);
 			textusuario.setColumns(10);
 		}
@@ -82,28 +87,28 @@ public class ObjLogin extends JDialog {
 			txtcontrasena.setText("contrase\u00F1a");
 			txtcontrasena.setName("txtcontrasena");
 			txtcontrasena.setColumns(10);
-			txtcontrasena.setBounds(88, 145, 111, 20);
+			txtcontrasena.setBounds(74, 75, 141, 30);
 			contentPanel.add(txtcontrasena);
 		}
 		
 		JButton btnEntrar = new JButton("Entrar");
-		btnEntrar.setBounds(99, 190, 89, 23);
+		btnEntrar.setBounds(98, 124, 89, 23);
 		contentPanel.add(btnEntrar);
 		{
 			JButton btnregistrar = new JButton("Registrar");
-			btnregistrar.setBounds(99, 224, 89, 23);
+			btnregistrar.setBounds(98, 155, 89, 23);
 			contentPanel.add(btnregistrar);
-		}
-		{
-			JLabel label = new JLabel("");
-			label.setIcon(new ImageIcon(ObjLogin.class.getResource("/Imagenes/candado.png")));
-			label.setBounds(114, 0, 66, 98);
-			contentPanel.add(label);
 		}
 		
 		JLabel label_1 = new JLabel("");
-		label_1.setBounds(43, 106, 46, 14);
+		label_1.setIcon(new ImageIcon(ObjLogin.class.getResource("/Images/Users.png")));
+		label_1.setBounds(45, 34, 29, 30);
 		contentPanel.add(label_1);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(ObjLogin.class.getResource("/Images/fod.png")));
+		label.setBounds(-87, -20, 369, 262);
+		contentPanel.add(label);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));

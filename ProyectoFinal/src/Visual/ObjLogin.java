@@ -18,6 +18,8 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
+
+
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
@@ -83,10 +85,24 @@ public class ObjLogin extends JDialog {
 		}
 		
 		JButton btnEntrar = new JButton("Entrar");
+		btnEntrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaPrincipal principal = new VentanaPrincipal();
+				principal.setVisible(true);
+				dispose();
+			}
+		});
 		btnEntrar.setBounds(239, 41, 89, 23);
 		contentPanel.add(btnEntrar);
 		{
 			JButton btnregistrar = new JButton("Registrar");
+			btnregistrar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					RegistrarUsuario regusuario = new RegistrarUsuario();
+					regusuario.setVisible(true);
+					dispose();
+				}
+			});
 			btnregistrar.setBounds(239, 75, 89, 23);
 			contentPanel.add(btnregistrar);
 		}

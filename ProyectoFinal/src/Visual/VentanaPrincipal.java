@@ -25,7 +25,7 @@ import java.awt.Dimension;
 public class VentanaPrincipal extends JFrame {
 
 	/**
-	 * 
+	 * s
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -77,12 +77,20 @@ public class VentanaPrincipal extends JFrame {
 		mnEstudiante.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		menuBar.add(mnEstudiante);
 		
-		JMenuItem mntmRegistro = new JMenuItem("Registro");
+		JMenuItem mntmRegistro = new JMenuItem("Registro Estudiante");
 		mnEstudiante.add(mntmRegistro);
 		
-		JMenuItem mntmListado = new JMenuItem("Listado ");
+		JMenuItem mntmListado = new JMenuItem("Listado Estudiante");
 		mnEstudiante.add(mntmListado);
-		
+		mntmListado.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ObjtListadoEst list = new ObjtListadoEst();
+				list.setVisible(true);
+				dispose();
+			}
+		});
 		JMenu mnFunciones = new JMenu("Reporte");
 		mnFunciones.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		menuBar.add(mnFunciones);
@@ -115,7 +123,9 @@ public class VentanaPrincipal extends JFrame {
 		JButton button = new JButton("Salir");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				ObjLogin login = new ObjLogin();
+				login.setVisible(true);
+				dispose();
 			}
 		});
 		button.setActionCommand("Cancel");

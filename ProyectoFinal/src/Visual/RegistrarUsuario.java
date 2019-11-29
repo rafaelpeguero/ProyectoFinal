@@ -7,7 +7,13 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Logico.Centro;
+import Logico.Usuario;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -20,15 +26,15 @@ import java.awt.event.ActionEvent;
 
 public class RegistrarUsuario extends JDialog {
 
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-
+	private JTextField txtusuario;
+	private JTextField txtcontrasena;
+	private JTextField txtconfirmar;
+	private JComboBox<Object> cmbtipo;
 	/**
 	 * Launch the application.
 	 */
-	private static final long serialVersionUID = 1L;
-	private JTextField textField_1;
-	private JTextField textField;
-	private JTextField textField_2;
 	public static void main(String[] args) {
 		try {
 			RegistrarUsuario dialog = new RegistrarUsuario();
@@ -75,31 +81,31 @@ public class RegistrarUsuario extends JDialog {
 			contentPanel.add(lblConfirmarContrasea);
 		}
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(171, 37, 130, 22);
-		textField_1.setToolTipText("");
-		textField_1.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		textField_1.setColumns(10);
-		contentPanel.add(textField_1);
+		txtusuario = new JTextField();
+		txtusuario.setBounds(171, 37, 130, 22);
+		txtusuario.setToolTipText("");
+		txtusuario.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		txtusuario.setColumns(10);
+		contentPanel.add(txtusuario);
 		
-		textField = new JTextField();
-		textField.setBounds(171, 108, 130, 22);
-		textField.setToolTipText("");
-		textField.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		textField.setColumns(10);
-		contentPanel.add(textField);
+		txtcontrasena = new JTextField();
+		txtcontrasena.setBounds(171, 108, 130, 22);
+		txtcontrasena.setToolTipText("");
+		txtcontrasena.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		txtcontrasena.setColumns(10);
+		contentPanel.add(txtcontrasena);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(171, 140, 130, 22);
-		textField_2.setToolTipText("");
-		textField_2.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		textField_2.setColumns(10);
-		contentPanel.add(textField_2);
+		txtconfirmar = new JTextField();
+		txtconfirmar.setBounds(171, 140, 130, 22);
+		txtconfirmar.setToolTipText("");
+		txtconfirmar.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		txtconfirmar.setColumns(10);
+		contentPanel.add(txtconfirmar);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Administrador", "Estudiante"}));
-		comboBox.setBounds(171, 74, 130, 20);
-		contentPanel.add(comboBox);
+		cmbtipo = new JComboBox<Object>();
+		cmbtipo.setModel(new DefaultComboBoxModel<Object>(new String[] {"<Seleccione>", "Administrador", "Estudiante"}));
+		cmbtipo.setBounds(174, 74, 127, 20);
+		contentPanel.add(cmbtipo);
 		
 		JLabel label = new JLabel("");
 		label.setBounds(-85, 0, 424, 241);
@@ -112,6 +118,15 @@ public class RegistrarUsuario extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Usuario aux = new Usuario(cmbtipo.getSelectedItem().toString(), txtusuario.getText(), txtcontrasena.getText());
+					    Centro.getInstance().RegistrarUsuario(aux);	
+					    	Login login = new Login();
+					    	dispose();
+						    login.setVisible(true);
+						}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
@@ -120,7 +135,7 @@ public class RegistrarUsuario extends JDialog {
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						ObjLogin login = new ObjLogin();
+						Login login = new Login();
 						login.setVisible(true);
 						dispose();
 					}

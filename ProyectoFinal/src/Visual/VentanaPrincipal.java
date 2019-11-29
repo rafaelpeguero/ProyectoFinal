@@ -14,13 +14,21 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.border.SoftBevelBorder;
+
+import Logico.Centro;
+import Visual.RegistrarUsuario;
+
 import javax.swing.border.BevelBorder;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
-import java.awt.Dimension;
-
 
 public class VentanaPrincipal extends JFrame {
 
@@ -34,22 +42,42 @@ public class VentanaPrincipal extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaPrincipal frame = new VentanaPrincipal();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		//EventQueue.invokeLater(new Runnable() {
+			//public void run() {
+				//try {
+				//	VentanaPrincipal frame = new VentanaPrincipal();
+				//	frame.setVisible(true);
+				//} catch (Exception e) {
+			//		e.printStackTrace();
+			//	}
+		//	}
+	//	});
 	}
 
 	/**
 	 * Create the frame.
 	 */
 	public VentanaPrincipal() {
+		setVisible(true);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				FileOutputStream empresa2;
+				ObjectOutputStream empresaWrite;
+				try {
+					empresa2 = new  FileOutputStream("empresa.dat");
+					empresaWrite = new ObjectOutputStream(empresa2);
+					empresaWrite.writeObject(Centro.getInstance());
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		setFont(new Font("Segoe UI", Font.BOLD, 14));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/Images/casa.png")));
 		setTitle("Men\u00FA Principal");
@@ -63,6 +91,9 @@ public class VentanaPrincipal extends JFrame {
 		JMenu mnEditor = new JMenu("Editor");
 		mnEditor.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		menuBar.add(mnEditor);
+		if(!Centro.getLoginUsuario().getTipo().equalsIgnoreCase("Administrador")){
+			mnEditor.setVisible(false);
+		}
 		
 		JMenuItem mntmNuevo = new JMenuItem("+ Nuevo ");
 		mnEditor.add(mntmNuevo);
@@ -79,6 +110,13 @@ public class VentanaPrincipal extends JFrame {
 		
 		JMenuItem mntmRegistro = new JMenuItem("Registro Estudiante");
 		mnEstudiante.add(mntmRegistro);
+		mntmRegistro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistrarUsuario users = new RegistrarUsuario();
+				users.setModal(true);
+				users.setVisible(true);
+			}
+		});
 		
 		JMenuItem mntmListado = new JMenuItem("Listado Estudiante");
 		mnEstudiante.add(mntmListado);
@@ -110,7 +148,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Images/pelicula-3D.png")));
-		label.setBounds(0, 39, 256, 256);
+		label.setBounds(0, 11, 256, 256);
 		contentPane.add(label);
 		
 		JPanel panel = new JPanel();
@@ -123,7 +161,7 @@ public class VentanaPrincipal extends JFrame {
 		JButton button = new JButton("Salir");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ObjLogin login = new ObjLogin();
+				Login login = new Login();
 				login.setVisible(true);
 				dispose();
 			}

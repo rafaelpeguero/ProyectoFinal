@@ -1,23 +1,25 @@
 package Logico;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Usuario implements Serializable{
-	
-	
 
+	
 	private static final long serialVersionUID = 1L;
 	private String tipo;
 	private String NombreUsuario;
 	private String Contrasena;
-	//private ArrayList<FiguraPlana> MisPrismas;
+	private ArrayList<FiguraPlana> MisPrismas;
 	
-	public Usuario(String tipo, String NombreUsuario, String Contrasena) {
+	public Usuario(String tipo, String nombreUsuario, String contrasena, ArrayList<FiguraPlana> misPrismas) {
 		super();
 		this.tipo = tipo;
-		this.NombreUsuario = NombreUsuario;
-		this.Contrasena = Contrasena;
+		this.NombreUsuario = nombreUsuario;
+		this.Contrasena = contrasena;
+		this.MisPrismas = misPrismas;
 	}
+
 	public String getTipo() {
 		return tipo;
 	}
@@ -47,13 +49,13 @@ public class Usuario implements Serializable{
 	
 	
 	
-	//public ArrayList<FiguraPlana> getMisPrismas() {
-	//	return MisPrismas;
-	//}
+	public ArrayList<FiguraPlana> getMisPrismas() {
+		return MisPrismas;
+	}
 	
-	//public void setMisPrismas(ArrayList<FiguraPlana> misPrismas) {
-	//	MisPrismas = misPrismas;
-	//}
+	public void setMisPrismas(ArrayList<FiguraPlana> misPrismas) {
+		MisPrismas = misPrismas;
+	}
 	
 
 	

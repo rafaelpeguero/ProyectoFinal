@@ -2,6 +2,8 @@ package Logico;
 
 import java.util.ArrayList;
 
+
+
 import java.io.Serializable;
 
 public class Centro implements Serializable{
@@ -11,6 +13,8 @@ public class Centro implements Serializable{
 	private static Centro centro;
 	private static Usuario loginUsuario;
 	private static boolean firstTime;
+	
+	
 	
 	private Centro() {
 		User = new ArrayList<>();
@@ -50,9 +54,9 @@ public class Centro implements Serializable{
 	
 	
 	
-	public void RegistrarUsuario(Usuario user) {
-		User.add(user);
-	}
+	//public void RegistrarUsuario(Usuario user) {
+	//	User.add(user);
+	//}
 
 	public static boolean isFirstTime() {
 		return firstTime;
@@ -73,7 +77,9 @@ public class Centro implements Serializable{
 		return log;
 	}
 	
-	
+	public void InsertarUsuario(Usuario aux){
+		User.add(aux);
+	}
 	
 public void RegistrarEst() {
 		

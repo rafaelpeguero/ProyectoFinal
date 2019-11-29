@@ -57,8 +57,8 @@ public class Login extends JFrame {
 					try {
 						empresa2 = new  FileOutputStream("empresa.dat");
 						empresaWrite = new ObjectOutputStream(empresa2);
-						Usuario aux = new Usuario("Administrador", "Admin", "Admin");
-						Centro.getInstance().RegistrarUsuario(aux);
+						Usuario aux = new Usuario("Administrador", "Admin", "Admin",	null);
+						Centro.getInstance().InsertarUsuario(aux);
 						empresaWrite.writeObject(Centro.getInstance());
 						empresa2.close();
 						empresaWrite.close();
@@ -110,6 +110,7 @@ public class Login extends JFrame {
 		panel.add(txtusuario);
 		
 		txtcontrasena = new JTextField();
+		txtcontrasena.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 12));
 		txtcontrasena.setColumns(10);
 		txtcontrasena.setBounds(66, 82, 141, 30);
 		panel.add(txtcontrasena);

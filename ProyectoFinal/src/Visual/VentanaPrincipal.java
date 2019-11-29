@@ -91,9 +91,7 @@ public class VentanaPrincipal extends JFrame {
 		JMenu mnEditor = new JMenu("Editor");
 		mnEditor.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		menuBar.add(mnEditor);
-		if(!Centro.getLoginUsuario().getTipo().equalsIgnoreCase("Administrador")){
-			mnEditor.setVisible(false);
-		}
+		
 		
 		JMenuItem mntmNuevo = new JMenuItem("+ Nuevo ");
 		mnEditor.add(mntmNuevo);
@@ -120,11 +118,14 @@ public class VentanaPrincipal extends JFrame {
 		
 		JMenuItem mntmListado = new JMenuItem("Listado Estudiante");
 		mnEstudiante.add(mntmListado);
+		if(!Centro.getLoginUsuario().getTipo().equalsIgnoreCase("Administrador")){
+			mnEstudiante.setVisible(false);
+		}
 		mntmListado.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				ObjtListadoEst list = new ObjtListadoEst();
+				ListadoUsuario list = new ListadoUsuario();
 				list.setVisible(true);
 				dispose();
 			}

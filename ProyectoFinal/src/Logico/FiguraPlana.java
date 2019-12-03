@@ -1,7 +1,6 @@
 package Logico;
 
 
-
 public abstract class FiguraPlana {
 	
 	protected double alturaPrisma;
@@ -15,10 +14,9 @@ public abstract class FiguraPlana {
 		this.tipoPrisma = tipoPrisma;
 	}
 	
-	
-	public abstract float Volumen();
-	public abstract float AreaLateral();
-	public abstract float AreasTotales();
+	public abstract double Volumen();
+	public abstract double AreaLateral();
+	public abstract double AreasTotales();
 	public abstract boolean Validador();
 	public abstract double Areabase();
 	public abstract double Perimetro();

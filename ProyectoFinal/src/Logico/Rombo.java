@@ -1,12 +1,16 @@
 package Logico;
 
+//ROMBO POSEE CUATRO VERTICES
 public class Rombo extends FiguraPlana {
 	
-	private double x,y, dV,dH; //dV = Diamertro Vertica y dH = Diamtero Horizontal
-	//ROMBO POSEE CUATRO VERTICES
-	public Rombo(double alturaPrisma,String tipoPrisma,double x, double y, double dV,double dH) {
+	//Atributos para un Rombo
+	private double x, y, dV, dH; 
+	//dV = Diamertro Vertica y dH = Diamtero Horizontal
+	
+	
+	public Rombo(double alturaPrisma,String tipoPrisma,double x,double dH, double y,double dV) {
 		super(alturaPrisma,tipoPrisma);
-		
+	
 		this.x = x; 
 		this.y = y;
 		this.dV = dV;
@@ -49,19 +53,19 @@ public class Rombo extends FiguraPlana {
 
 
 	@Override
-	public float Volumen() {
+	public double Volumen() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public float AreaLateral() {
+	public double AreaLateral() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public float AreasTotales() {
+	public double AreasTotales() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -82,7 +86,7 @@ public class Rombo extends FiguraPlana {
 
 	@Override
 	public double Perimetro() {
-				return (4 * Math.sqrt(  Math.pow(dV/2, 2) + Math.pow(dH/2, 2) )  );
+		return (4 * Math.sqrt(  Math.pow(dV/2, 2) + Math.pow(dH/2, 2) )  );
 		
 	}
 

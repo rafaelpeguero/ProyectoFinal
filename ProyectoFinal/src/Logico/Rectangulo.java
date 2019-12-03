@@ -2,13 +2,14 @@ package Logico;
 
 public class Rectangulo extends FiguraPlana {
 	
-	
+	//Atributos para un Rectangulo
 	private double base = 0, altura = 0;
 	private double x1 = 0, x2 = 0, x3 = 0, x4 = 0;
 	private double y1 = 0, y2 = 0, y3 = 0, y4 = 0;
 
 	
-	public static void main(String[] args) {
+	/* \\\\\\\\\\\PROBADOR////////////////
+	 public static void main(String[] args) {
 	  
 	 Rectangulo r = new Rectangulo(0, null, 0, 0, 0, 0, 0, 0);
 	  //double n;		  
@@ -24,14 +25,8 @@ public class Rectangulo extends FiguraPlana {
 	  
 	  System.out.println("Area: " + r.Areabase());
 	  
- }
-	/*public static void main(String[] args) {
+ }*/
 		
-		System.out.println("Hola");
-	}*/
-	
-	
-	
 	 public double getBase() {
 		return base;
 	}
@@ -114,52 +109,30 @@ public class Rectangulo extends FiguraPlana {
 		this.y4 = y4;
 	}
 
-	
-	
-	
-	
-	
-	
-
-
-	/*public Rectangulo(Vertice verticeA, Vertice verticeB, Vertice verticeC,float alturaPrisma,String tipoPrisma ) {
-		super(verticeA,verticeB, verticeC,alturaPrisma,tipoPrisma);
-	}*/
 	public Rectangulo(double alturaPrisma,String tipoPrisma, double x1, double x2, double x3, double y1, double y2, double y3) {
 		super(alturaPrisma,tipoPrisma);
-		
 		this.x1 = x1;
 		this.x2 = x2;
 		this.x3 = x3;
 		this.y1 = y1;
 		this.y2 = y2;
 		this.y3 = y3;
-		
-		
 	}
 
-
-	/*public Rectangulo() {
-		// TODO Auto-generated constructor stub
-	}*/
-
-
-
-
 	@Override
-	public float Volumen() {
+	public double Volumen() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public float AreaLateral() {
+	public double AreaLateral() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public float AreasTotales() {
+	public double AreasTotales() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

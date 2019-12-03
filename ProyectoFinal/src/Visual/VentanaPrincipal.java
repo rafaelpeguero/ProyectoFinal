@@ -1,6 +1,7 @@
 package Visual;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
 
@@ -82,8 +83,8 @@ public class VentanaPrincipal extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/Images/casa.png")));
 		setTitle("Men\u00FA Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 578, 365);
-		this.setLocationRelativeTo(null);
+		setBounds(100, 100, 1366, 768);
+		Dimensionador();//Extra
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -173,5 +174,16 @@ public class VentanaPrincipal extends JFrame {
 		label_1.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Images/fod.png")));
 		label_1.setBounds(115, -33, 591, 355);
 		contentPane.add(label_1);
+	}
+	/*
+	 * Nombre 	  : Dimensionador
+	 * Funcion	  : Ajustar la dimension correcta de la vista
+	 * Argumentos : Ninguno
+	 * Retorno	  : Ninguno
+	 */
+	public void Dimensionador() {
+		Dimension dim = super.getToolkit().getScreenSize();
+		super.setSize(dim.width, dim.height);
+		setLocationRelativeTo(null);
 	}
 }

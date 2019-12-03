@@ -2,10 +2,11 @@ package Logico;
 
 public class Cuadrado extends FiguraPlana {
 
-	private double base = 0, altura = 0;
+	//Atributos para un Cuadrado
 	private double x1 = 0, x2 = 0, x3 = 0, x4 = 0;
 	private double y1 = 0, y2 = 0, y3 = 0, y4 = 0;	
 	
+	private double base = 0, altura = 0;
 	
 	
 	public Cuadrado(double alturaPrisma,String tipoPrisma, double x1, double x2, double y1, double y2) {
@@ -97,19 +98,19 @@ public class Cuadrado extends FiguraPlana {
 	}
 
 	@Override
-	public float Volumen() {
+	public double Volumen() {
+		
+		return x1+x2;
+	}
+
+	@Override
+	public double AreaLateral() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public float AreaLateral() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public float AreasTotales() {
+	public double AreasTotales() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

@@ -10,6 +10,8 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.border.SoftBevelBorder;
 
 import Logico.Centro;
@@ -91,8 +93,8 @@ public class Login extends JFrame {
 		setTitle("Login");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/Images/login.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 376, 223);
-		this.setLocationRelativeTo(null);
+		setBounds(100, 100, 1366, 768);
+		Dimensionador();
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -176,5 +178,16 @@ public class Login extends JFrame {
 		label_2.setIcon(new ImageIcon(Login.class.getResource("/Images/fod.png")));
 		label_2.setBounds(-29, -64, 379, 297);
 		panel.add(label_2);
+	}
+	/*
+	 * Nombre 	  : Dimensionador
+	 * Funcion	  : Ajustar la dimension correcta de la vista
+	 * Argumentos : Ninguno
+	 * Retorno	  : Ninguno
+	 */
+	public void Dimensionador() {
+		Dimension dim = super.getToolkit().getScreenSize();
+		super.setSize(dim.width, dim.height);
+		setLocationRelativeTo(null);
 	}
 }

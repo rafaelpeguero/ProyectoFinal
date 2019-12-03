@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.Dimension;
 
 public class ObjtListadoEst extends JDialog {
 
@@ -37,7 +38,8 @@ public class ObjtListadoEst extends JDialog {
 	 */
 	public ObjtListadoEst() {
 		setTitle("Listado de Estudiante");
-		setBounds(100, 100, 600, 350);
+		setBounds(100, 100, 1366, 768);
+		Dimensionador();
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(240, 240, 240));
 		contentPanel.setLayout(new FlowLayout());
@@ -62,6 +64,17 @@ public class ObjtListadoEst extends JDialog {
 				buttonPane.add(btnCancelar);
 			}
 		}
+	}
+	/*
+	 * Nombre 	  : Dimensionador
+	 * Funcion	  : Ajustar la dimension correcta de la vista
+	 * Argumentos : Ninguno
+	 * Retorno	  : Ninguno
+	 */
+	public void Dimensionador() {
+		Dimension dim = super.getToolkit().getScreenSize();
+		super.setSize(dim.width, dim.height);
+		setLocationRelativeTo(null);
 	}
 
 }

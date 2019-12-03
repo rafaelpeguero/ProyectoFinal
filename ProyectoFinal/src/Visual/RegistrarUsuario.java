@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
@@ -52,7 +53,8 @@ public class RegistrarUsuario extends JDialog {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarUsuario.class.getResource("/Images/Users.png")));
 		setTitle("Registro de Usuario");
 		setName("RegistrarUsuario");
-		setBounds(100, 100, 355, 272);
+		setBounds(100, 100, 1366, 768);
+		Dimensionador();
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -144,5 +146,16 @@ public class RegistrarUsuario extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+	/*
+	 * Nombre 	  : Dimensionador
+	 * Funcion	  : Ajustar la dimension correcta de la vista
+	 * Argumentos : Ninguno
+	 * Retorno	  : Ninguno
+	 */
+	public void Dimensionador() {
+		Dimension dim = super.getToolkit().getScreenSize();
+		super.setSize(dim.width, dim.height);
+		setLocationRelativeTo(null);
 	}
 }

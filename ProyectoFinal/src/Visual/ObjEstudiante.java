@@ -1,6 +1,7 @@
 package Visual;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -47,8 +48,8 @@ public class ObjEstudiante extends JFrame {
 	public ObjEstudiante() {
 		setTitle("Registro de Estudiante");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600
-				, 350);
+		setBounds(100, 100, 1366, 768);
+		Dimensionador();
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -110,5 +111,16 @@ public class ObjEstudiante extends JFrame {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(472, 11, 89, 23);
 		panel.add(btnCancelar);
+	}
+	/*
+	 * Nombre 	  : Dimensionador
+	 * Funcion	  : Ajustar la dimension correcta de la vista
+	 * Argumentos : Ninguno
+	 * Retorno	  : Ninguno
+	 */
+	public void Dimensionador() {
+		Dimension dim = super.getToolkit().getScreenSize();
+		super.setSize(dim.width, dim.height);
+		setLocationRelativeTo(null);
 	}
 }

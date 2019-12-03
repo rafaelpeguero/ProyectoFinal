@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.DefaultComboBoxModel;
@@ -119,19 +120,44 @@ public class RegistrarUsuario extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.addActionListener(new ActionListener() {
+				JButton btnregistrar = new JButton("Registrar");
+				btnregistrar.addActionListener(new ActionListener() {
+					
+
 					public void actionPerformed(ActionEvent e) {
-						Usuario aux = new Usuario(cmbtipo.getSelectedItem().toString(), txtusuario.getText(), txtcontrasena.getText());
-					    Centro.getInstance().RegistrarUsuario(aux);	
-					    	Login login = new Login();
-					    	dispose();
-						    login.setVisible(true);
+						if(txtusuario.getText().length() == 0 ^ txtcontrasena.getText().length() == 0 ^ txtconfirmar.getText().length() == 0){
+							JOptionPane.showMessageDialog(null, "¡Favor de llenar los datos correspondientes!", "Error", JOptionPane.ERROR_MESSAGE);
+							}else {
+								if(!txtcontrasena.getText().equals(txtconfirmar.getText())) {
+									JOptionPane.showMessageDialog(null, "¡Las contraseñas no son iguales!", "Error", JOptionPane.ERROR_MESSAGE);
+								}else {
+									if(txtcontrasena.getText().length() == 0 && txtconfirmar.getText().length() == 0) {
+										JOptionPane.showMessageDialog(null, "¡Favor Insertar una contraseña!", "Error", JOptionPane.ERROR_MESSAGE);
+									}else {
+								if(!Centro.getInstance().ConfirmarLogin(txtusuario.getText(),txtcontrasena.getText())){
+									Usuario aux = new Usuario(cmbtipo.getSelectedItem().toString(), txtusuario.getText(), txtcontrasena.getText(),null);
+								    //Centro.getInstance().RegistrarUsuario(aux);	
+								    
+								    //Usuario auxii = null;
+								    //String nom = txtusuario.getText();
+								    //String tip = cmbtipo.getSelectedItem().toString();
+								    //String cont = txtcontrasena.getText();
+								 
+								    //auxii = new Usuario(nom , tip, cont, null);
+								    Centro.getInstance().InsertarUsuario(aux);
+								    
+								    	Login login = new Login();
+								    	dispose();
+									    login.setVisible(true);
+								}
+							}
+							}
+							}
 						}
 				});
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				btnregistrar.setActionCommand("OK");
+				buttonPane.add(btnregistrar);
+				getRootPane().setDefaultButton(btnregistrar);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");

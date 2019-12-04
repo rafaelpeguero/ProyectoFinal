@@ -57,6 +57,7 @@ public class ObjtHerramienta extends JFrame {
 	
 	
 	//DECLARACIONES EXTRA
+	private JButton btnGraficar, btnCalcular,btnLimpiar; 
 	private JComboBox<String> cbxPrismas;
 	JComboBox<String> cbxColor;
 	private boolean instanciaSalvada = false; 
@@ -120,6 +121,8 @@ public class ObjtHerramienta extends JFrame {
 					txtAlturaPrism.setText(null);
 					cbxColor.setEnabled(true);
 					txtAlturaPrism.setEnabled(true);
+					btnCalcular.setEnabled(true);
+					btnLimpiar.setEnabled(true);
 				}
 				
 				if(cbxPrismas.getSelectedIndex()==1) { //CUADRADO
@@ -338,6 +341,12 @@ public class ObjtHerramienta extends JFrame {
 		panelDatos.add(labelColor);
 		
 		cbxColor = new JComboBox<String>();
+		cbxColor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(cbxColor.getSelectedIndex()!= 0)
+					btnGraficar.setEnabled(true);
+			}
+		});
 		cbxColor.setEnabled(false);
 		cbxColor.setModel(new DefaultComboBoxModel(new String[] {"       < Seleccione >", "Blanco", "Azul", "Rojo", "Amarillo", "Verde", "Magenta", "Gris Claro", "Gris Ocuro"}));
 		cbxColor.setBounds(100, 80, 150, 22);
@@ -480,10 +489,11 @@ public class ObjtHerramienta extends JFrame {
 		pnbtnsSecundario.add(panel_2);
 		panel_2.setLayout(new CardLayout(0, 0));
 		
-		JButton btnGraficar = new JButton("Graficar");
+		btnGraficar = new JButton("Graficar");
+		btnGraficar.setEnabled(false);
 		btnGraficar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String tipo ;//= "Cuadrado"; //Prueba;
+				String tipo ;
 				tipo = String.valueOf(cbxPrismas.getSelectedItem()) ;			
 			
 						//INCLUIR El Validador antes de graficar
@@ -499,7 +509,8 @@ public class ObjtHerramienta extends JFrame {
 		pnbtnsSecundario.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JButton btnLimpiar = new JButton("Limpiar");
+		btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.setEnabled(false);
 		btnLimpiar.setSize(129, 31);
 		btnLimpiar.setLocation(0, 0);
 		panel_1.add(btnLimpiar);
@@ -509,7 +520,8 @@ public class ObjtHerramienta extends JFrame {
 		pnbtnsSecundario.add(pn_btnCalcular);
 		pn_btnCalcular.setLayout(new CardLayout(0, 0));
 		
-		JButton btnCalcular = new JButton("Calcular");
+		btnCalcular = new JButton("Calcular");
+		btnCalcular.setEnabled(false);
 		btnCalcular.setLocation(132, 0);
 		pn_btnCalcular.add(btnCalcular, "name_1279219772400");
 		btnCalcular.addActionListener(new ActionListener() {
@@ -559,12 +571,150 @@ public class ObjtHerramienta extends JFrame {
 	 * Retorno	  : Ninguno
 	 */
 	public void Graficar(String tipo) {
+		
+		Color color = SetColor(cbxColor.getSelectedItem().toString()); //Asigna un color
+		
+		double x1=0,x2=0,x3=0,x4=0,y1=0,y2=0,y3=0,y4=0;
+		//Vertices Recicidos en los TxtField del Panel de Datos
+		switch (tipo) {
+		
+		case "Cuadrado" : {
+			 x1 = Double.valueOf(txtVAi.getText());
+			 x2 = Double.valueOf(txtVBi.getText());
+			 y1 = Double.valueOf(txtVAii.getText());
+			 y2 = Double.valueOf(txtVBii.getText());
+			break;
+		}
+		case "Rombo" :{
+			 x1 = Double.valueOf(txtVAi.getText());
+			 x2 = Double.valueOf(txtVBi.getText());
+			 x3 = Double.valueOf(txtVCi.getText());
+			 x4 = Double.valueOf(txtVDi.getText());
+			
+			 y1 = Double.valueOf(txtVAii.getText());
+			 y2 = Double.valueOf(txtVBii.getText());
+			 y3 = Double.valueOf(txtVCii.getText());
+			 y4 = Double.valueOf(txtVDii.getText());
+			break;
+		}
+		case "Rectangulo" :	{
+			 x1 = Double.valueOf(txtVAi.getText());
+			 x2 = Double.valueOf(txtVBi.getText());
+			 x3 = Double.valueOf(txtVCi.getText());
+			
+			 y1 = Double.valueOf(txtVAii.getText());
+			 y2 =Double.valueOf(txtVBii.getText());
+			 y3 =Double.valueOf(txtVCii.getText());
+			
+			break;
+		}
+		case "Triangulo" :{
+			 x1 = Double.valueOf(txtVAi.getText());
+			 x2 = Double.valueOf(txtVBi.getText());
+			 x3 = Double.valueOf(txtVCi.getText());
+			
+			 y1 = Double.valueOf(txtVAii.getText());
+			 y2 =Double.valueOf(txtVBii.getText());
+			 y3 =Double.valueOf(txtVCii.getText());
+			
+			break;
+		}
+		case "Trapecio" :{
+			 x1 = Double.valueOf(txtVAi.getText());
+			 x2 = Double.valueOf(txtVBi.getText());
+			 x3 = Double.valueOf(txtVCi.getText());
+			 x4 = Double.valueOf(txtVDi.getText());
+			
+			 y1 = Double.valueOf(txtVAii.getText());
+			 y2 =Double.valueOf(txtVBii.getText());
+			 y3 =Double.valueOf(txtVCii.getText());
+			 y4 =Double.valueOf(txtVDii.getText());
+			
+			break;
+		}
+		}
+		double altura = Double.valueOf(txtAlturaPrism.getText());
+		
+		double yC1 = y1, yC2 = y2; //Mejorar
+		
+	/*
+	 * Contrucion de Vertices:
+	 * (1) Contruir los vertices en los (x,y,z) para las diferentes caras de la figura 3D
+	 * 
+	 * (2) Vertices Simetricos:
+	 *  - Los Vertices de La Cara Delantera y Trasera seran iguales
+	 *  - El Vertice de la Cara Izquierda debe de ser mayor o igual a la Cara Trasera; En el Caso 
+	 * 	Trapecio con Pendiente a la derecha Cara Frontal sera igual a Cara Fondo
+	 *  - El Vertice de la Cara Superior debe de ser mayor o igual a la Cara Izquierda; En el Caso 
+	 * 	Trapecio con Pendiente a la derecha Cara Izquierda es igual a Cara Superior
+	 * 
+	 */
+				//////////////Vertices Cara Frontal\\\\\\\\\\\\\\\\\\
+		double vXCf [] = new double [] {x1,x2,x3,x4};
+		double vYCf [] = new double [] {yC1,yC2,yC2,yC1};
+		double vZCf [] = new double [] {0,0,0,0}; // Coordenadas Nulas en el eje Z(imaginario)
+				
+		//////////////Vertices cara Fondo\\\\\\\\\\\\\\\\\\
+		double vXCff [] = new double [] {x1,x2,x3,x4};
+		double vYCff [] = new double [] {yC1,yC2,yC2,yC1};
+		double vZCff [] = new double [] {altura,altura,altura,altura}; // Coordenadas Nulas en el eje Z(imaginario)		
+
+		////			//////////Vertices Cara Izquierda\\\\\\\\\\\\\\\\\\
+		double vXCi [] = new double [] {x1,x2,x3,x4};
+		double vYCi [] = new double [] {yC1,yC2,yC2,yC1};
+		double vZCi [] = new double [] {altura,altura,0,0}; // Coordenadas Nulas en el eje Z(imaginario)		
+
+		////			//////////Vertices Cara Derecha\\\\\\\\\\\\\\\\\\
+		double vXCd [] = new double [] {x1,x2,x3,x4};
+		double vYCd [] = new double [] {yC1,yC2,yC2,yC1};
+		double vZCd [] = new double [] {0,0,altura,altura}; // Coordenadas Nulas en el eje Z(imaginario)		
+
+		////			//////////Vertices Cara Superior\\\\\\\\\\\\\\\\\\
+		double vXCs [] = new double [] {x1,x2,x3,x4};
+		double vYCs [] = new double [] {yC2,yC2,yC2,yC2};
+		double vZCs [] = new double [] {altura,0,0,altura}; // Coordenadas Nulas en el eje Z(imaginario)		
+
+		////	//////////Vertices Cara Inferior\\\\\\\\\\\\\\\\\\
+		double vXCif [] = new double [] {x1,x2,x3,x4};
+		double vYCif [] = new double [] {yC1,yC1,yC1,yC1};
+		double vZCif [] = new double [] {altura,0,0,altura}; // Coordenadas Nulas en el eje Z(imaginario)			
+		
 		switch (tipo) {
 		
 		case("Cuadrado")  :{ 				
 			panelCuadrado.setVisible(true);
 			
-			break;}
+			//Contruccion de Figura3D mediante la clase StdDraw3D
+			StdDraw3D.setCameraOrientation(0, 0, 0); // Angulos en x,y,z
+			StdDraw3D.clearOverlay(); 
+			StdDraw3D.clear(StdDraw3D.BLACK);
+			StdDraw3D.setScale(-10,10); 	//Estacala minima a maxima para x,y,z
+			StdDraw3D.clear3D();			// Limpiando para siguiente
+			StdDraw3D.setPenColor(color);
+			//StdDraw3D.overlayText(0, -8, "Use el Mouse para manejar la grafica");//Se llama Overlay a la publicidad que se superpone como una capa superior sobre los vídeos en reproducción para mostrar información de empresas que pueden interesar a la clase de usuarios que ven esos vídeos en concreto.
+			
+			//C. Frontal
+			PoligonoRotado(vXCf, vYCf, vZCff);
+			//C. Fondo
+			PoligonoRotado(vXCff, vYCff, vZCff);
+			//C. Izquierda
+			PoligonoRotado(vXCi, vYCi, vZCi);
+			//C. Derecha
+			PoligonoRotado(vXCd, vYCd, vZCd);
+			//C. Superior
+			PoligonoRotado(vXCs, vYCs, vZCs);
+			//C.Inferior
+			PoligonoRotado(vXCif, vYCif, vZCif);
+			
+			//Adds Grafica
+			StdDraw3D.setPenColor(StdDraw3D.WHITE);
+			StdDraw3D.overlayText(0, -8, "Use el mouse para mover la figura");
+			
+			//Fase Final, Mostrando el Objeto de StdDraw3D
+			StdDraw3D.show();
+			
+			break;
+			}
 		
 		case("Rectangulo"):{ 	
 			panelRectangulo.setVisible(true);
@@ -596,7 +746,15 @@ public class ObjtHerramienta extends JFrame {
 		}
 	}
 			
-		
+	/*
+	 * Nombre 	  : PoligonoRotado
+	 * Funcion	  : Crear y Rotar un Objeto StdDraw3D tipo Poligono2D a unos angulos por defecto en x,y,z
+	 * Argumentos : double x [],double y [], double z []; Vertices (x,y,z)
+	 * Retorno	  : Ninguno
+	 */
+	public void PoligonoRotado(double x [],double y [], double z []) {
+		StdDraw3D.polygon(x, y, z).rotate(5, 10, 2);
+	}
 	/*
 	 * Nombre 	  : Calcular
 	 * Funcion	  : Calcular  { A_base, V_base, V.L_prisma, V.T_prisma, A.L_prisma, A.T_prisma}
@@ -670,8 +828,6 @@ public class ObjtHerramienta extends JFrame {
 			break;
 		}
 		}
-
-		
 		double altura = Double.valueOf(txtAlturaPrism.getText());
 		
 		
@@ -816,6 +972,9 @@ public class ObjtHerramienta extends JFrame {
 		panelRombo.setVisible(false);
 		panelRectangulo.setVisible(false);
 		panelTrapecio.setVisible(false);
+		btnGraficar.setEnabled(false);
+		btnCalcular.setEnabled(false);
+		btnLimpiar.setEnabled(false);
 		
 	}
 	/*

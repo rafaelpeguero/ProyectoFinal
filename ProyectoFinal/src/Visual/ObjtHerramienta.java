@@ -64,9 +64,9 @@ public class ObjtHerramienta extends JFrame {
 	private JPanel panelCuadrado,panelRectangulo,panelTriangulo,panelTrapecio,panelRombo,panelDefault;
 	private JTextField txtAlturaPrism;
 	private JTextField txtLongAltura;
-	private JPanel panel;
+	private JPanel pn_btnCalcular;
 	private JPanel panel_1;
-	private JPanel panel_3;
+	private JPanel pnbtnsSecundario;
 	
 
 	/**
@@ -102,7 +102,7 @@ public class ObjtHerramienta extends JFrame {
 		
 		JPanel panelDatos = new JPanel();
 		panelDatos.setBorder(new TitledBorder(null, "Datos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelDatos.setBounds(10, 11, 383, 331);
+		panelDatos.setBounds(30, 11, 383, 331);
 		contentPane.add(panelDatos);
 		panelDatos.setLayout(null);
 		
@@ -114,9 +114,13 @@ public class ObjtHerramienta extends JFrame {
 		cbxPrismas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				defaultVertice();
-				cbxColor.setEnabled(true);
-				txtAlturaPrism.setEnabled(true);
-				txtAlturaPrism.setText(null);
+				
+				
+				if(cbxPrismas.getSelectedIndex()!=0){
+					txtAlturaPrism.setText(null);
+					cbxColor.setEnabled(true);
+					txtAlturaPrism.setEnabled(true);
+				}
 				
 				if(cbxPrismas.getSelectedIndex()==1) { //CUADRADO
 					txtVAi.setEnabled(true);
@@ -363,7 +367,7 @@ public class ObjtHerramienta extends JFrame {
 		
 		JPanel panelFigura = new JPanel();
 		panelFigura.setBorder(new TitledBorder(null, "Figura 3D", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelFigura.setBounds(509, 11, 841, 660);
+		panelFigura.setBounds(471, 11, 841, 660);
 		contentPane.add(panelFigura);
 		panelFigura.setLayout(new CardLayout(0, 0));
 		
@@ -396,7 +400,7 @@ public class ObjtHerramienta extends JFrame {
 		
 		JPanel panelResultados = new JPanel();
 		panelResultados.setBorder(new TitledBorder(null, "Resultados", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelResultados.setBounds(10, 353, 383, 245);
+		panelResultados.setBounds(30, 353, 383, 245);
 		contentPane.add(panelResultados);
 		panelResultados.setLayout(null);
 		
@@ -445,7 +449,7 @@ public class ObjtHerramienta extends JFrame {
 		txtATprisma.setColumns(10);
 		
 		JPanel panelBtns = new JPanel();
-		panelBtns.setBounds(1130, 682, 220, 46);
+		panelBtns.setBounds(1092, 682, 220, 46);
 		contentPane.add(panelBtns);
 		panelBtns.setLayout(null);
 		
@@ -466,35 +470,62 @@ public class ObjtHerramienta extends JFrame {
 			}
 		});
 		
-		panel = new JPanel();
-		panel.setBounds(10, 609, 186, 39);
-		contentPane.add(panel);
-		panel.setLayout(new CardLayout(0, 0));
-		
-		JButton btnCalcular = new JButton("Calcular");
-		btnCalcular.setLocation(108, 0);
-		panel.add(btnCalcular, "name_8780046227999");
-		
-		panel_1 = new JPanel();
-		panel_1.setBounds(206, 609, 187, 39);
-		contentPane.add(panel_1);
-		panel_1.setLayout(new CardLayout(0, 0));
-		
-		JButton btnLimpiar = new JButton("Limpiar");
-		btnLimpiar.setLocation(108, 0);
-		panel_1.add(btnLimpiar, "name_8783421002400");
+		pnbtnsSecundario = new JPanel();
+		pnbtnsSecundario.setBounds(30, 598, 383, 107);
+		contentPane.add(pnbtnsSecundario);
+		pnbtnsSecundario.setLayout(null);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(108, 659, 186, 39);
-		contentPane.add(panel_2);
+		panel_2.setBounds(220, 11, 129, 31);
+		pnbtnsSecundario.add(panel_2);
 		panel_2.setLayout(new CardLayout(0, 0));
 		
 		JButton btnGraficar = new JButton("Graficar");
-		panel_2.add(btnGraficar, "name_9105847642800");
+		btnGraficar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String tipo ;//= "Cuadrado"; //Prueba;
+				tipo = String.valueOf(cbxPrismas.getSelectedItem()) ;			
+			
+						//INCLUIR El Validador antes de graficar
+				Graficar(tipo);
+
+			}
+		});
+		btnGraficar.setLocation(132, 0);
+		panel_2.add(btnGraficar, "name_1079070842300");
 		
-		panel_3 = new JPanel();
-		panel_3.setBounds(397, 682, 49, 46);
-		contentPane.add(panel_3);
+		panel_1 = new JPanel();
+		panel_1.setBounds(132, 53, 129, 31);
+		pnbtnsSecundario.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JButton btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.setSize(129, 31);
+		btnLimpiar.setLocation(0, 0);
+		panel_1.add(btnLimpiar);
+		
+		pn_btnCalcular = new JPanel();
+		pn_btnCalcular.setBounds(28, 11, 149, 31);
+		pnbtnsSecundario.add(pn_btnCalcular);
+		pn_btnCalcular.setLayout(new CardLayout(0, 0));
+		
+		JButton btnCalcular = new JButton("Calcular");
+		btnCalcular.setLocation(132, 0);
+		pn_btnCalcular.add(btnCalcular, "name_1279219772400");
+		btnCalcular.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+			
+				String tipo ;//= "Cuadrado"; //Prueba;
+				tipo = String.valueOf(cbxPrismas.getSelectedItem()) ;			
+//				tipo = cbxPrismas.getItemAt( cbxPrismas.getSelectedItem() );
+				//INCLUIR El Validador antes de graficar
+				Calcular(tipo);
+			
+				//Graficar(tipo);
+				
+			}
+		});
 		btnLimpiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtVAi.setText(null);
@@ -518,20 +549,6 @@ public class ObjtHerramienta extends JFrame {
 				
 			}
 		});
-		btnCalcular.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-			
-				String tipo ;//= "Cuadrado"; //Prueba;
-				tipo = String.valueOf(cbxPrismas.getSelectedItem()) ;			
-//				tipo = cbxPrismas.getItemAt( cbxPrismas.getSelectedItem() );
-				//INCLUIR El Validador antes de graficar
-				Calcular(tipo);
-			
-				//Graficar(tipo);
-				
-			}
-		});
 	}
 	
 	
@@ -549,22 +566,26 @@ public class ObjtHerramienta extends JFrame {
 			
 			break;}
 		
-		case("Rectangulo"):{ 				
+		case("Rectangulo"):{ 	
+			panelRectangulo.setVisible(true);
 			
 			
 			break;}
 		
-		case("Rombo") 	  :{				
+		case("Rombo") 	  :{		
+			panelRombo.setVisible(true);
 			
 			
 			break;}
 		
 		case("Triangulo") :{ 				
+			panelTriangulo.setVisible(true);
 			
 			
 			break;}
 		
 		case("Trapecio")  :{				
+			panelTrapecio.setVisible(true);
 			
 			
 			break;}
@@ -760,16 +781,42 @@ public class ObjtHerramienta extends JFrame {
 	 */
 	public void defaultVertice() {
 		txtVAi.setEnabled(false);
+		txtVAi.setText("  x1 ");
+		
 		txtVAii.setEnabled(false);
+		txtVAii.setText("  y1 ");
+		
 		txtVBi.setEnabled(false);
+		txtVBi.setText("  x2  ");
+		
 		txtVBii.setEnabled(false);
+		txtVBii.setText("  y2 ");
+		
 		txtVCi.setEnabled(false);
+		txtVCi.setText("  x3  ");
+		
 		txtVCii.setEnabled(false);
+		txtVCii.setText("  y3 ");
+		
 		txtVDi.setEnabled(false);
+		txtVDi.setText("  x4  ");
+		
 		txtVDii.setEnabled(false);
+		txtVDii.setText("  y4 ");
+		
 		txtLongAltura.setEnabled(false);
-		cbxColor.setEnabled(false);
+		txtLongAltura.setText(" Altura base");
+		
 		txtAlturaPrism.setEnabled(false);
+		txtAlturaPrism.setText(" Altura prisma");
+		
+		cbxColor.setEnabled(false);
+		panelCuadrado.setVisible(false);
+		panelTriangulo.setVisible(false);
+		panelRombo.setVisible(false);
+		panelRectangulo.setVisible(false);
+		panelTrapecio.setVisible(false);
+		
 	}
 	/*
 	 * Nombre 	  : SalvarInstancia

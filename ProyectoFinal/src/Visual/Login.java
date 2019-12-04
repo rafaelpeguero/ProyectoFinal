@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -31,12 +32,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Login extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtusuario;
-	private JTextField txtcontrasena;
+	private JPasswordField txtcontrasena;
+	private boolean lgByUser = false;
 
 	/**
 	 * Launch the application.
@@ -105,19 +109,62 @@ public class Login extends JFrame {
 		panel.setLayout(null);
 		
 		txtusuario = new JTextField();
+		txtusuario.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				lgByUser = true;
+				txtusuario.setText(null);
+				txtcontrasena.setText(null);
+				e.consume();
+				
+			}
+		});
+		txtusuario.setText("                usuario");
+		txtusuario.setBounds(599, 317, 141, 30);
 		txtusuario.setToolTipText("");
 		txtusuario.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		txtusuario.setColumns(10);
-		txtusuario.setBounds(66, 41, 141, 30);
 		panel.add(txtusuario);
 		
-		txtcontrasena = new JTextField();
+		txtcontrasena = new JPasswordField();
+		
+		txtcontrasena.addMouseListener(new MouseAdapter() {
+			@Override
+			
+			public void mouseClicked(MouseEvent e) {
+				
+				if(lgByUser == false) {
+				txtusuario.setText(null);
+				txtcontrasena.setText(null);
+				e.consume();
+				}
+			}
+		});
+		
+		txtcontrasena.setText("1234");
+		txtcontrasena.setBounds(599, 358, 141, 30);
 		txtcontrasena.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 12));
 		txtcontrasena.setColumns(10);
-		txtcontrasena.setBounds(66, 82, 141, 30);
 		panel.add(txtcontrasena);
 		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(563, 411, 214, 47);
+		panel_1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panel_1.setBackground(new Color(112, 128, 144));
+		panel.add(panel_1);
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.setBounds(112, 6, 92, 35);
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		panel_1.setLayout(null);
+		
 		JButton btnEntrar = new JButton("Entrar");
+		btnEntrar.setBounds(10, 6, 92, 35);
+		panel_1.add(btnEntrar);
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(Centro.getInstance().ConfirmarLogin(txtusuario.getText(),txtcontrasena.getText())){
@@ -135,12 +182,32 @@ public class Login extends JFrame {
 				}
 			}
 		});
-		btnEntrar.setBounds(231, 48, 89, 23);
-		panel.add(btnEntrar);
+		btnSalir.setActionCommand("Cancel");
+		panel_1.add(btnSalir);
+		
+		JLabel label = new JLabel("");
+		label.setBounds(532, 317, 29, 30);
+		label.setIcon(new ImageIcon(Login.class.getResource("/Images/Users.png")));
+		panel.add(label);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setBounds(532, 358, 29, 30);
+		label_1.setIcon(new ImageIcon(Login.class.getResource("/Images/bloquear.png")));
+		panel.add(label_1);
+		
+		JLabel label_2 = new JLabel("");
+		label_2.setBounds(478, 118, 354, 502);
+		label_2.setIcon(new ImageIcon(Login.class.getResource("/Images/fod.png")));
+		panel.add(label_2);
 		
 		JButton btnregistrar = new JButton("Registrar");
-		btnregistrar.setBounds(231, 82, 89, 23);
+		btnregistrar.setBounds(324, 451, 92, 23);
 		panel.add(btnregistrar);
+		
+		JLabel lblCentroDePrisma = new JLabel("Centro de Prisma Login");
+		lblCentroDePrisma.setBounds(581, 80, 177, 37);
+		panel.add(lblCentroDePrisma);
+		btnregistrar.setVisible(false);
 		btnregistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegistrarUsuario registrar = new RegistrarUsuario();
@@ -148,37 +215,6 @@ public class Login extends JFrame {
 				registrar.setVisible(true);
 			}
 		});
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel_1.setBackground(new Color(112, 128, 144));
-		panel_1.setBounds(0, 137, 350, 39);
-		panel.add(panel_1);
-		panel_1.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		
-		JButton btnSalir = new JButton("Salir");
-		btnSalir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
-		btnSalir.setActionCommand("Cancel");
-		panel_1.add(btnSalir);
-		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(Login.class.getResource("/Images/Users.png")));
-		label.setBounds(32, 41, 29, 30);
-		panel.add(label);
-		
-		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(Login.class.getResource("/Images/bloquear.png")));
-		label_1.setBounds(32, 82, 29, 30);
-		panel.add(label_1);
-		
-		JLabel label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon(Login.class.getResource("/Images/fod.png")));
-		label_2.setBounds(-29, -64, 379, 297);
-		panel.add(label_2);
 	}
 	/*
 	 * Nombre 	  : Dimensionador

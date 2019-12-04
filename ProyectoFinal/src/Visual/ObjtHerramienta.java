@@ -212,7 +212,7 @@ public class ObjtHerramienta extends JFrame {
 				
 			}
 		});
-		cbxPrismas.setModel(new DefaultComboBoxModel(new String[] {"       < Seleccione > ", "Cuadrado", "Rombo", "Rectangulo", "Triangulo", "Trapecio"}));
+		cbxPrismas.setModel(new DefaultComboBoxModel<String>(new String[] {"       < Seleccione > ", "Cuadrado", "Rombo", "Rectangulo", "Triangulo", "Trapecio"}));
 		cbxPrismas.setBounds(100, 29, 150, 22);
 		panelDatos.add(cbxPrismas);
 		
@@ -348,7 +348,7 @@ public class ObjtHerramienta extends JFrame {
 			}
 		});
 		cbxColor.setEnabled(false);
-		cbxColor.setModel(new DefaultComboBoxModel(new String[] {"       < Seleccione >", "Blanco", "Azul", "Rojo", "Amarillo", "Verde", "Magenta", "Gris Claro", "Gris Ocuro"}));
+		cbxColor.setModel(new DefaultComboBoxModel<String>(new String[] {"       < Seleccione >", "Blanco", "Azul", "Rojo", "Amarillo", "Verde", "Magenta", "Gris Claro", "Gris Ocuro"}));
 		cbxColor.setBounds(100, 80, 150, 22);
 		panelDatos.add(cbxColor);
 		

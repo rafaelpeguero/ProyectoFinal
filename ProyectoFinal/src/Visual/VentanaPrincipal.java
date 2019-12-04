@@ -18,6 +18,7 @@ import javax.swing.border.SoftBevelBorder;
 
 import Logico.Centro;
 import Visual.RegistrarUsuario;
+import Visual.ObjtHerramienta;
 
 import javax.swing.border.BevelBorder;
 import java.awt.FlowLayout;
@@ -30,6 +31,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import javax.swing.JTextField;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -38,6 +40,9 @@ public class VentanaPrincipal extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTextField txtCantEst;
+	private JTextField txtPrismSalvado;
+	private JTextField txtPrismCreados;
 
 	/**
 	 * Launch the application.
@@ -95,6 +100,13 @@ public class VentanaPrincipal extends JFrame {
 		
 		
 		JMenuItem mntmNuevo = new JMenuItem("+ Nuevo ");
+		mntmNuevo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ObjtHerramienta aux  = new ObjtHerramienta();
+				aux.setVisible(true);
+				
+			}
+		});
 		mnEditor.add(mntmNuevo);
 		
 		JMenuItem mntmAbrir = new JMenuItem("+ Abrir");
@@ -150,17 +162,17 @@ public class VentanaPrincipal extends JFrame {
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Images/pelicula-3D.png")));
-		label.setBounds(0, 11, 256, 256);
+		label.setBounds(905, 413, 256, 256);
 		contentPane.add(label);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panel.setBackground(new Color(112, 128, 144));
-		panel.setBounds(0, 267, 562, 39);
+		panel.setBounds(542, 630, 562, 39);
 		contentPane.add(panel);
-		panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		JButton button = new JButton("Salir");
+		button.setBounds(430, 8, 124, 23);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login login = new Login();
@@ -168,13 +180,61 @@ public class VentanaPrincipal extends JFrame {
 				dispose();
 			}
 		});
+		panel.setLayout(null);
 		button.setActionCommand("Cancel");
 		panel.add(button);
 		
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Images/fod.png")));
-		label_1.setBounds(115, -33, 591, 355);
+		label_1.setBounds(616, 227, 591, 355);
 		contentPane.add(label_1);
+		
+		JPanel panelDatosCentro = new JPanel();
+		panelDatosCentro.setBounds(10, 276, 332, 191);
+		contentPane.add(panelDatosCentro);
+		panelDatosCentro.setLayout(null);
+		
+		JLabel lblDatosDelCentro = new JLabel("Datos del Centro");
+		lblDatosDelCentro.setBounds(132, 21, 107, 22);
+		panelDatosCentro.add(lblDatosDelCentro);
+		
+		JLabel lblCantidaDeEstudiantes = new JLabel("Cantida de Estudiantes Registrados : ");
+		lblCantidaDeEstudiantes.setBounds(10, 62, 215, 22);
+		panelDatosCentro.add(lblCantidaDeEstudiantes);
+		
+		JLabel lblCantidadDePrismas = new JLabel("Cantidad de Prismas Registrados :");
+		lblCantidadDePrismas.setBounds(10, 104, 215, 22);
+		panelDatosCentro.add(lblCantidadDePrismas);
+		
+		JLabel lblCantidadDePrismas_1 = new JLabel("Cantidad de Prismas Creados :");
+		lblCantidadDePrismas_1.setBounds(10, 146, 215, 22);
+		panelDatosCentro.add(lblCantidadDePrismas_1);
+		
+		txtCantEst = new JTextField();
+		txtCantEst.setEditable(false);
+		txtCantEst.setBounds(215, 64, 107, 20);
+		panelDatosCentro.add(txtCantEst);
+		txtCantEst.setColumns(10);
+		
+		txtPrismSalvado = new JTextField();
+		txtPrismSalvado.setEditable(false);
+		txtPrismSalvado.setColumns(10);
+		txtPrismSalvado.setBounds(215, 105, 107, 20);
+		panelDatosCentro.add(txtPrismSalvado);
+		
+		txtPrismCreados = new JTextField();
+		txtPrismCreados.setEditable(false);
+		txtPrismCreados.setColumns(10);
+		txtPrismCreados.setBounds(215, 146, 107, 20);
+		panelDatosCentro.add(txtPrismCreados);
+		
+		JPanel panelFechaHora = new JPanel();
+		panelFechaHora.setBounds(1138, 35, 179, 45);
+		contentPane.add(panelFechaHora);
+		
+		JLabel lblFechaYHora = new JLabel("Fecha y Hora :");
+		lblFechaYHora.setBounds(1180, 11, 71, 33);
+		contentPane.add(lblFechaYHora);
 	}
 	/*
 	 * Nombre 	  : Dimensionador

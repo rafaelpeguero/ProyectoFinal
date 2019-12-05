@@ -29,6 +29,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -43,6 +45,8 @@ public class VentanaPrincipal extends JFrame {
 	private JTextField txtCantEst;
 	private JTextField txtPrismSalvado;
 	private JTextField txtPrismCreados;
+	private Centro micentro = null;
+	
 
 	/**
 	 * Launch the application.
@@ -58,12 +62,23 @@ public class VentanaPrincipal extends JFrame {
 			//	}
 		//	}
 	//	});
-	}
 
-	/**
+	} 
+
+	/** 
 	 * Create the frame.
 	 */
-	public VentanaPrincipal() {
+	public VentanaPrincipal(Centro centro) {
+		this.micentro = centro;
+        Calendar fecha = new GregorianCalendar();
+
+        int año = fecha.get(Calendar.YEAR);
+        int mes = fecha.get(Calendar.MONTH);
+        int dia = fecha.get(Calendar.DAY_OF_MONTH);
+        int hora = fecha.get(Calendar.HOUR_OF_DAY);
+        int minuto = fecha.get(Calendar.MINUTE);
+        int segundo = fecha.get(Calendar.SECOND);
+   
 		setVisible(true);
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -95,11 +110,12 @@ public class VentanaPrincipal extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu mnEditor = new JMenu("Editor");
-		mnEditor.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		mnEditor.setFont(new Font("Segoe UI", Font.BOLD, 17));
 		menuBar.add(mnEditor);
 		
 		
 		JMenuItem mntmNuevo = new JMenuItem("+ Nuevo ");
+		mntmNuevo.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		mntmNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ObjtHerramienta aux  = new ObjtHerramienta();
@@ -110,26 +126,30 @@ public class VentanaPrincipal extends JFrame {
 		mnEditor.add(mntmNuevo);
 		
 		JMenuItem mntmAbrir = new JMenuItem("+ Abrir");
+		mntmAbrir.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		mnEditor.add(mntmAbrir);
 		
 		JMenuItem mntmSalvar = new JMenuItem("+ Salvar");
+		mntmSalvar.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		mnEditor.add(mntmSalvar);
 		
 		JMenu mnEstudiante = new JMenu("Estudiante");
-		mnEstudiante.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		mnEstudiante.setFont(new Font("Segoe UI", Font.BOLD, 17));
 		menuBar.add(mnEstudiante);
 		
 		JMenuItem mntmRegistro = new JMenuItem("Registro Estudiante");
+		mntmRegistro.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		mnEstudiante.add(mntmRegistro);
 		mntmRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegistrarUsuario users = new RegistrarUsuario();
+				RegistrarUsuario users = new RegistrarUsuario(null);
 				users.setModal(true);
 				users.setVisible(true);
 			}
 		});
 		
 		JMenuItem mntmListado = new JMenuItem("Listado Estudiante");
+		mntmListado.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		mnEstudiante.add(mntmListado);
 		if(!Centro.getLoginUsuario().getTipo().equalsIgnoreCase("Administrador")){
 			mnEstudiante.setVisible(false);
@@ -138,44 +158,58 @@ public class VentanaPrincipal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				ListadoUsuario list = new ListadoUsuario();
+				ListadoUsuario list = new ListadoUsuario(micentro);
 				list.setVisible(true);
 				dispose();
 			}
 		});
 		JMenu mnFunciones = new JMenu("Reporte");
-		mnFunciones.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		mnFunciones.setFont(new Font("Segoe UI", Font.BOLD, 17));
 		menuBar.add(mnFunciones);
 		
 		JMenu mnReporte = new JMenu("Aplicaciones");
-		mnReporte.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		mnReporte.setFont(new Font("Segoe UI", Font.BOLD, 17));
 		menuBar.add(mnReporte);
 		
+		JMenuItem mntmGraficard = new JMenuItem("Graficar 3D");
+		mntmGraficard.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		mnReporte.add(mntmGraficard);
+		mntmGraficard.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ObjtHerramienta herramienta = new ObjtHerramienta();
+				herramienta.setVisible(true);
+				dispose();
+			}
+		});
 		JMenu mnConfiguracion = new JMenu("Configuraci\u00F3n");
-		mnConfiguracion.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		mnConfiguracion.setFont(new Font("Segoe UI", Font.BOLD, 17));
 		menuBar.add(mnConfiguracion);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
+		contentPane.setBackground(new Color(169, 169, 169));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel label = new JLabel("");
+		label.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		label.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Images/pelicula-3D.png")));
-		label.setBounds(905, 413, 256, 256);
+		label.setBounds(1094, 449, 256, 182);
 		contentPane.add(label);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panel.setBackground(new Color(112, 128, 144));
-		panel.setBounds(542, 630, 562, 39);
+		panel.setBounds(0, 636, 1360, 83);
 		contentPane.add(panel);
 		
 		JButton button = new JButton("Salir");
-		button.setBounds(430, 8, 124, 23);
+		button.setFont(new Font("Segoe UI", Font.BOLD, 16));
+		button.setBounds(1204, 26, 124, 35);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Login login = new Login();
+				Login login = new Login(centro);
 				login.setVisible(true);
 				dispose();
 			}
@@ -184,57 +218,74 @@ public class VentanaPrincipal extends JFrame {
 		button.setActionCommand("Cancel");
 		panel.add(button);
 		
-		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/Images/fod.png")));
-		label_1.setBounds(616, 227, 591, 355);
-		contentPane.add(label_1);
+		JPanel panelFechaHora = new JPanel();
+		panelFechaHora.setBounds(27, 11, 152, 55);
+		panel.add(panelFechaHora);
+		panelFechaHora.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panelFechaHora.setBackground(new Color(255, 255, 255));
+		panelFechaHora.setLayout(null);
+		
+		JLabel lblfecha = new JLabel("");
+		lblfecha.setBounds(10, 11, 159, 17);
+		lblfecha.setFont(new Font("Tahoma", Font.BOLD, 14));
+		panelFechaHora.add(lblfecha);
+		
+		lblfecha.setText("Fecha: "+ dia + "/" + (mes+1) + "/" + año);
+		
+		JLabel lblhora = new JLabel("");
+		lblhora.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblhora.setBounds(10, 28, 159, 17);
+		panelFechaHora.add(lblhora);
+		
+		lblhora.setText("Hora : "+ hora +":" + minuto + ":" + segundo);
 		
 		JPanel panelDatosCentro = new JPanel();
-		panelDatosCentro.setBounds(10, 276, 332, 191);
+		panelDatosCentro.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panelDatosCentro.setBackground(new Color(255, 255, 255));
+		panelDatosCentro.setBounds(487, 194, 447, 212);
 		contentPane.add(panelDatosCentro);
 		panelDatosCentro.setLayout(null);
 		
 		JLabel lblDatosDelCentro = new JLabel("Datos del Centro");
-		lblDatosDelCentro.setBounds(132, 21, 107, 22);
+		lblDatosDelCentro.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		lblDatosDelCentro.setBounds(149, 11, 159, 22);
 		panelDatosCentro.add(lblDatosDelCentro);
 		
 		JLabel lblCantidaDeEstudiantes = new JLabel("Cantida de Estudiantes Registrados : ");
-		lblCantidaDeEstudiantes.setBounds(10, 62, 215, 22);
+		lblCantidaDeEstudiantes.setFont(new Font("Segoe UI", Font.PLAIN, 17));
+		lblCantidaDeEstudiantes.setBounds(37, 61, 282, 22);
 		panelDatosCentro.add(lblCantidaDeEstudiantes);
 		
 		JLabel lblCantidadDePrismas = new JLabel("Cantidad de Prismas Registrados :");
-		lblCantidadDePrismas.setBounds(10, 104, 215, 22);
+		lblCantidadDePrismas.setFont(new Font("Segoe UI", Font.PLAIN, 17));
+		lblCantidadDePrismas.setBounds(55, 111, 258, 22);
 		panelDatosCentro.add(lblCantidadDePrismas);
 		
 		JLabel lblCantidadDePrismas_1 = new JLabel("Cantidad de Prismas Creados :");
-		lblCantidadDePrismas_1.setBounds(10, 146, 215, 22);
+		lblCantidadDePrismas_1.setFont(new Font("Segoe UI", Font.PLAIN, 17));
+		lblCantidadDePrismas_1.setBounds(81, 157, 232, 22);
 		panelDatosCentro.add(lblCantidadDePrismas_1);
 		
 		txtCantEst = new JTextField();
+		txtCantEst.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		txtCantEst.setEditable(false);
-		txtCantEst.setBounds(215, 64, 107, 20);
+		txtCantEst.setBounds(329, 59, 80, 28);
 		panelDatosCentro.add(txtCantEst);
 		txtCantEst.setColumns(10);
 		
 		txtPrismSalvado = new JTextField();
+		txtPrismSalvado.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		txtPrismSalvado.setEditable(false);
 		txtPrismSalvado.setColumns(10);
-		txtPrismSalvado.setBounds(215, 105, 107, 20);
+		txtPrismSalvado.setBounds(329, 109, 80, 28);
 		panelDatosCentro.add(txtPrismSalvado);
 		
 		txtPrismCreados = new JTextField();
+		txtPrismCreados.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		txtPrismCreados.setEditable(false);
 		txtPrismCreados.setColumns(10);
-		txtPrismCreados.setBounds(215, 146, 107, 20);
+		txtPrismCreados.setBounds(329, 155, 80, 28);
 		panelDatosCentro.add(txtPrismCreados);
-		
-		JPanel panelFechaHora = new JPanel();
-		panelFechaHora.setBounds(1138, 35, 179, 45);
-		contentPane.add(panelFechaHora);
-		
-		JLabel lblFechaYHora = new JLabel("Fecha y Hora :");
-		lblFechaYHora.setBounds(1180, 11, 71, 33);
-		contentPane.add(lblFechaYHora);
 	}
 	/*
 	 * Nombre 	  : Dimensionador
@@ -246,5 +297,6 @@ public class VentanaPrincipal extends JFrame {
 		Dimension dim = super.getToolkit().getScreenSize();
 		super.setSize(dim.width, dim.height);
 		setLocationRelativeTo(null);
+		this.setResizable(false);
 	}
 }

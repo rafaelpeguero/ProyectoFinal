@@ -34,23 +34,35 @@ public class RegistrarUsuario extends JDialog {
 	private JTextField txtcontrasena;
 	private JTextField txtconfirmar;
 	private JComboBox<Object> cmbtipo;
+	private Centro micentro = null;
+	private Usuario miusuario = null;
+	protected Centro centro;
+	
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			RegistrarUsuario dialog = new RegistrarUsuario();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	//public static void main(String[] args) {
+	//	try {
+	//		RegistrarUsuario dialog = new RegistrarUsuario(micentro);
+	//		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+	//		dialog.setVisible(true);
+	//	} catch (Exception e) {
+	//		e.printStackTrace();
+	//	}
+	//}
 
 	/**
 	 * Create the dialog.
 	 */
-	public RegistrarUsuario() {
+	public RegistrarUsuario(Centro micentro) {
+		this.micentro = micentro;
+		setResizable(false);
+		if(micentro==null) 
+		{
+		  setTitle("Registrar Suplidor");
+		}else{
+		  setTitle("Modificar: "+micentro.getUser());	
+		}
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarUsuario.class.getResource("/Images/Users.png")));
 		setTitle("Registro de Usuario");
 		setName("RegistrarUsuario");
@@ -121,38 +133,48 @@ public class RegistrarUsuario extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton btnregistrar = new JButton("Registrar");
+				if(micentro==null){
+					btnregistrar.setText("Registrar");
+				}else{
+					btnregistrar.setText("Modificar");
+				}
 				btnregistrar.addActionListener(new ActionListener() {
-					
-
 					public void actionPerformed(ActionEvent e) {
-						if(txtusuario.getText().length() == 0 ^ txtcontrasena.getText().length() == 0 ^ txtconfirmar.getText().length() == 0){
-							JOptionPane.showMessageDialog(null, "¡Favor de llenar los datos correspondientes!", "Error", JOptionPane.ERROR_MESSAGE);
-							}else {
-								if(!txtcontrasena.getText().equals(txtconfirmar.getText())) {
-									JOptionPane.showMessageDialog(null, "¡Las contraseñas no son iguales!", "Error", JOptionPane.ERROR_MESSAGE);
-								}else {
-									if(txtcontrasena.getText().length() == 0 && txtconfirmar.getText().length() == 0) {
-										JOptionPane.showMessageDialog(null, "¡Favor Insertar una contraseña!", "Error", JOptionPane.ERROR_MESSAGE);
-									}else {
-								if(!Centro.getInstance().ConfirmarLogin(txtusuario.getText(),txtcontrasena.getText())){
-									Usuario aux = new Usuario(cmbtipo.getSelectedItem().toString(), txtusuario.getText(), txtcontrasena.getText(),null);
-								    //Centro.getInstance().RegistrarUsuario(aux);	
-								    
-								    //Usuario auxii = null;
-								    //String nom = txtusuario.getText();
-								    //String tip = cmbtipo.getSelectedItem().toString();
-								    //String cont = txtcontrasena.getText();
-								 
-								    //auxii = new Usuario(nom , tip, cont, null);
-								    Centro.getInstance().InsertarUsuario(aux);
-								    
-								    	Login login = new Login();
-								    	dispose();
-									    login.setVisible(true);
-								}
+						if(miusuario==null){
+							Usuario aux = new Usuario( txtusuario.getText(), cmbtipo.getSelectedItem().toString(), txtcontrasena.getText(), txtconfirmar.getText(), null);
+							micentro.InsertarUsuario(aux);
+							JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+							clean();
+							}else{
+								miusuario.setNombreUsuario(txtusuario.getText());
+								miusuario.setTipo(cmbtipo.getSelectedItem().toString());
+								micentro.modificarUsuario(miusuario);
+								ListadoUsuario.loadUsuarios();
+								dispose();
 							}
-							}
-							}
+						//Usuario aux = null;
+						//String id = txtId.getText();
+						//String nombre = txtusuario.getText();
+						//String contrasena = txtcontrasena.getText();
+						//String confirmar = txtconfirmar.getText();
+			 			//String tipo = cmbtipo.getSelectedItem().toString();
+						//if(txtusuario.getText().length() == 0 ^ txtcontrasena.getText().length() == 0 ^ txtconfirmar.getText().length() == 0){
+						//	JOptionPane.showMessageDialog(null, "¡Favor de llenar los datos correspondientes!", "Error", JOptionPane.ERROR_MESSAGE);
+						//	}else {
+						//		if(!txtcontrasena.getText().equals(txtconfirmar.getText())) {
+						//			JOptionPane.showMessageDialog(null, "¡Las contraseñas no son iguales!", "Error", JOptionPane.ERROR_MESSAGE);
+						//		}else {
+						//			if(txtcontrasena.getText().length() == 0 && txtconfirmar.getText().length() == 0) {
+						//				JOptionPane.showMessageDialog(null, "¡Favor Insertar una contraseña!", "Error", JOptionPane.ERROR_MESSAGE);
+						//			}else {
+						//aux = new Usuario( tipo, nombre, contrasena, confirmar, null);
+						//if(!Centro.getInstance().ConfirmarLogin(txtusuario.getText(),txtcontrasena.getText())){
+						//Centro.getInstance().InsertarUsuario(aux);
+						//dispose();
+						//}
+						//			}
+						//			}
+						//			}
 						}
 				});
 				btnregistrar.setActionCommand("OK");
@@ -163,7 +185,7 @@ public class RegistrarUsuario extends JDialog {
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Login login = new Login();
+						Login login = new Login(centro);
 						login.setVisible(true);
 						dispose();
 					}
@@ -183,5 +205,14 @@ public class RegistrarUsuario extends JDialog {
 		Dimension dim = super.getToolkit().getScreenSize();
 		super.setSize(dim.width, dim.height);
 		setLocationRelativeTo(null);
+	}
+	
+
+	private void clean() {
+		cmbtipo.setSelectedIndex(0);
+		txtusuario.setText("");
+		txtcontrasena.setText("");
+		txtconfirmar.setText("");
+
 	}
 }

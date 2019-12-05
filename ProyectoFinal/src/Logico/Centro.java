@@ -2,14 +2,13 @@ package Logico;
 
 import java.util.ArrayList;
 
-
-
 import java.io.Serializable;
 
 public class Centro implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private ArrayList <Usuario> User;
+	private static int cantestudiantes;
 	private static Centro centro;
 	private static Usuario loginUsuario;
 	private static boolean firstTime;
@@ -18,6 +17,7 @@ public class Centro implements Serializable{
 	
 	private Centro() {
 		User = new ArrayList<>();
+		cantestudiantes = 0;
 	}
 	
 	public static Centro getInstance(){
@@ -34,6 +34,14 @@ public class Centro implements Serializable{
 	
 	public void setUser(ArrayList<Usuario> user) {
 		User = user;
+	}
+	
+	public static int getCantestudiantes() {
+		return cantestudiantes;
+	}
+
+	public static void setCantestudiantes(int cantestudiantes) {
+		Centro.cantestudiantes = cantestudiantes;
 	}
 	
 	public static Centro getCentro() {
@@ -79,13 +87,61 @@ public class Centro implements Serializable{
 	
 	public void InsertarUsuario(Usuario aux){
 		User.add(aux);
-	}
+	} 
 	
+	
+	public String BuscarEstudianteporID(String idestudiante) {
+		String aux = null;
+		boolean encontrado = false;
+		int i = 0;
+		while(! encontrado && i< User.size()){
+			if(User.get(i).getId().equalsIgnoreCase(idestudiante)){
+				aux = User.get(i).getId();
+				encontrado = true;
+			}
+			i++;
+		}
+		return aux;
+	}
+	private int indexBycodigo(String codigo) {
+		boolean encontrado = false;
+		int i = 0;
+		int index = -1;
+		while (!encontrado && i< cantestudiantes) {
+			if(User.get(i).getId().equalsIgnoreCase(codigo)){
+				encontrado = true;
+				index = i;
+				 
+			}
+			i++;
+		}
+		return index;
+	}
+	public void modificarUsuario(Usuario miusu) {
+		int index = indexBycodigo(miusu.getId());
+		this.User = new ArrayList <Usuario>(index);
+	}
+	public void EliminarUsuario(String identificador) {
+		int index = -1;
+		int i= 0;
+		if(indexBycodigo(identificador)>-1){
+			index = indexBycodigo(identificador);
+			i = index;
+				while(i<cantestudiantes-1){
+				 this.User = new ArrayList <Usuario>(i+1);
+				  i++;
+				}
+			cantestudiantes--;	
+		}
+
+	}
 public void RegistrarEst() {
 		
 	}
 	public void RemoverEst() {
 		
 	}
+
+	
 
 }

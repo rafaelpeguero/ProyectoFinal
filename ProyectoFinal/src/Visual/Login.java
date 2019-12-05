@@ -41,16 +41,18 @@ public class Login extends JFrame {
 	private JTextField txtusuario;
 	private JPasswordField txtcontrasena;
 	private boolean lgByUser = false;
+	private Centro micentro = null;
+	protected static Centro centro;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) { 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				FileInputStream empresa;
 				FileOutputStream empresa2;
-				ObjectInputStream empresaRead;
+				ObjectInputStream empresaRead; 
 				ObjectOutputStream empresaWrite;
 				try {
 					empresa = new FileInputStream ("empresa.dat");
@@ -63,7 +65,7 @@ public class Login extends JFrame {
 					try {
 						empresa2 = new  FileOutputStream("empresa.dat");
 						empresaWrite = new ObjectOutputStream(empresa2);
-						Usuario aux = new Usuario("Administrador", "Admin", "Admin",	null);
+						Usuario aux = new Usuario("Administrador", "Admin", "Admin",	null, null);
 						Centro.getInstance().InsertarUsuario(aux);
 						empresaWrite.writeObject(Centro.getInstance());
 						empresa2.close();
@@ -81,7 +83,7 @@ public class Login extends JFrame {
 				}
 				
 				try {
-					Login frame = new Login();
+					Login frame = new Login(centro);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -93,18 +95,22 @@ public class Login extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Login() {
+	public Login(Centro centro) {
+		this.micentro = centro;
 		setTitle("Login");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/Images/login.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1366, 768);
-		Dimensionador();
+		setBounds(100, 100, 647, 468);
+		setLocationRelativeTo(null);
+		this.setResizable(false);
+		//Dimensionador();
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(169, 169, 169));
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
@@ -119,10 +125,9 @@ public class Login extends JFrame {
 				
 			}
 		});
-		txtusuario.setText("                usuario");
-		txtusuario.setBounds(599, 317, 141, 30);
+		txtusuario.setBounds(176, 126, 302, 30);
 		txtusuario.setToolTipText("");
-		txtusuario.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		txtusuario.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		txtusuario.setColumns(10);
 		panel.add(txtusuario);
 		
@@ -140,21 +145,20 @@ public class Login extends JFrame {
 				}
 			}
 		});
-		
-		txtcontrasena.setText("1234");
-		txtcontrasena.setBounds(599, 358, 141, 30);
-		txtcontrasena.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 12));
+		txtcontrasena.setBounds(176, 197, 302, 30);
+		txtcontrasena.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		txtcontrasena.setColumns(10);
 		panel.add(txtcontrasena);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(563, 411, 214, 47);
+		panel_1.setBounds(0, 336, 631, 94);
 		panel_1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panel_1.setBackground(new Color(112, 128, 144));
 		panel.add(panel_1);
 		
 		JButton btnSalir = new JButton("Salir");
-		btnSalir.setBounds(112, 6, 92, 35);
+		btnSalir.setFont(new Font("Segoe UI", Font.BOLD, 16));
+		btnSalir.setBounds(339, 32, 124, 35);
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
@@ -163,19 +167,20 @@ public class Login extends JFrame {
 		panel_1.setLayout(null);
 		
 		JButton btnEntrar = new JButton("Entrar");
-		btnEntrar.setBounds(10, 6, 92, 35);
+		btnEntrar.setFont(new Font("Segoe UI", Font.BOLD, 16));
+		btnEntrar.setBounds(180, 32, 124, 35);
 		panel_1.add(btnEntrar);
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(Centro.getInstance().ConfirmarLogin(txtusuario.getText(),txtcontrasena.getText())){
-					VentanaPrincipal principal = new VentanaPrincipal();
+				if(Centro.getInstance().ConfirmarLogin(txtusuario.getText(),txtcontrasena.getToolTipText())){
+					VentanaPrincipal principal = new VentanaPrincipal(centro);
 					dispose();
 					principal.setVisible(true);
 				}else {
-					if(txtusuario.getText().length() == 0 && txtcontrasena.getText().length() == 0){
+					if(txtusuario.getText().length() == 0 && txtcontrasena.getToolTipText().length() == 0){
 					JOptionPane.showMessageDialog(null, "¡Favor de llenar los datos correspondientes!", "Error", JOptionPane.ERROR_MESSAGE);
 					}else {
-						if(!Centro.getInstance().ConfirmarLogin(txtusuario.getText(),txtcontrasena.getText())){
+						if(!Centro.getInstance().ConfirmarLogin(txtusuario.getText(),txtcontrasena.getToolTipText())){
 							JOptionPane.showMessageDialog(null, "¡Usuario no Existe, favor registrarse!", "Advertencia", JOptionPane.WARNING_MESSAGE);
 						}
 					}
@@ -186,35 +191,19 @@ public class Login extends JFrame {
 		panel_1.add(btnSalir);
 		
 		JLabel label = new JLabel("");
-		label.setBounds(532, 317, 29, 30);
+		label.setBounds(137, 126, 29, 30);
 		label.setIcon(new ImageIcon(Login.class.getResource("/Images/Users.png")));
 		panel.add(label);
 		
 		JLabel label_1 = new JLabel("");
-		label_1.setBounds(532, 358, 29, 30);
+		label_1.setBounds(137, 197, 29, 30);
 		label_1.setIcon(new ImageIcon(Login.class.getResource("/Images/bloquear.png")));
 		panel.add(label_1);
 		
-		JLabel label_2 = new JLabel("");
-		label_2.setBounds(478, 118, 354, 502);
-		label_2.setIcon(new ImageIcon(Login.class.getResource("/Images/fod.png")));
-		panel.add(label_2);
-		
-		JButton btnregistrar = new JButton("Registrar");
-		btnregistrar.setBounds(324, 451, 92, 23);
-		panel.add(btnregistrar);
-		
-		JLabel lblCentroDePrisma = new JLabel("Centro de Prisma Login");
-		lblCentroDePrisma.setBounds(581, 80, 177, 37);
+		JLabel lblCentroDePrisma = new JLabel("Centro de Estudios Matem\u00E1ticos");
+		lblCentroDePrisma.setFont(new Font("Segoe UI", Font.BOLD, 24));
+		lblCentroDePrisma.setBounds(123, 26, 369, 37);
 		panel.add(lblCentroDePrisma);
-		btnregistrar.setVisible(false);
-		btnregistrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				RegistrarUsuario registrar = new RegistrarUsuario();
-				dispose();
-				registrar.setVisible(true);
-			}
-		});
 	}
 	/*
 	 * Nombre 	  : Dimensionador

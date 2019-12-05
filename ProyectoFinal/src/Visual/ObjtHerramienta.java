@@ -61,7 +61,7 @@ public class ObjtHerramienta extends JFrame {
 	private JLabel label_1;
 	private JLabel label_2;
 	private JTextField txtVAxCuad;
-	private JTextField txtVAyCuad;
+	private JTextField txtVAyCuad; 
 	private JTextField txtVBxCuad;
 	private JTextField txtVByCuad;
 	private JComboBox<String> cbxPrismas;

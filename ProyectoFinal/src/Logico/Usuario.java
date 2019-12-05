@@ -7,19 +7,29 @@ public class Usuario implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;
+	private String id;
 	private String tipo;
 	private String NombreUsuario;
 	private String Contrasena;
+	private String Confirmar;
 	private ArrayList<FiguraPlana> MisPrismas;
 	
-	public Usuario(String tipo, String nombreUsuario, String contrasena, ArrayList<FiguraPlana> misPrismas) {
-		super();
+	public Usuario(String tipo, String nombreUsuario, String contrasena, String confirmar, ArrayList<FiguraPlana> misPrismas) {
+		super(); 
 		this.tipo = tipo;
 		this.NombreUsuario = nombreUsuario;
 		this.Contrasena = contrasena;
+		this.Confirmar = confirmar;
 		this.MisPrismas = misPrismas;
 	}
+	public String getId() {
+		return id;
+	}
 
+	public void setId(String id) {
+		this.id = id;
+	}
+	
 	public String getTipo() {
 		return tipo;
 	}
@@ -43,7 +53,12 @@ public class Usuario implements Serializable{
 	public void setContrasena(String Contrasena) {
 		this.Contrasena = Contrasena;
 	}
-	
+	public String getConfirmar() {
+		return Confirmar;
+	}
+	public void setConfirmar(String confirmar) {
+		Confirmar = confirmar;
+	}
 	
 
 	
@@ -56,6 +71,8 @@ public class Usuario implements Serializable{
 	public void setMisPrismas(ArrayList<FiguraPlana> misPrismas) {
 		MisPrismas = misPrismas;
 	}
+	
+
 	
 
 	

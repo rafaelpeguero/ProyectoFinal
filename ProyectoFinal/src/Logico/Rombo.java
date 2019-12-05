@@ -5,7 +5,7 @@ public class Rombo extends FiguraPlana {
 	
 	//Atributos para un Rombo
 	private double x, y, dV, dH; 
-	//dV = Diamertro Vertica y dH = Diamtero Horizontal
+	//dV = Diamertro Vertical y dH = Diamtero Horizontal
 	
 	
 	public Rombo(double alturaPrisma,String tipoPrisma,double x,double dH, double y,double dV) {
@@ -16,6 +16,11 @@ public class Rombo extends FiguraPlana {
 		this.dV = dV;
 		this.dH= dH;
 		
+	}
+	
+	public void completador() {
+		dV = 0;
+		dH = 0;
 	}
 
 	public double getX() {

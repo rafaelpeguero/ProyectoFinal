@@ -58,7 +58,6 @@ public class ObjtHerramienta extends JFrame {
 	private JPanel panelCuadrado,panelTriangulo,panelTrapecio,panelRombo;
 	private JPanel pn_btnCalcular;
 	private JPanel panel_1;
-	private JPanel pnbtnsSecundario;
 	private JLabel label_1;
 	private JLabel label_2;
 	private JTextField txtVAxCuad;
@@ -145,7 +144,7 @@ public class ObjtHerramienta extends JFrame {
 		
 		JPanel panelDatos = new JPanel();
 		panelDatos.setBorder(new TitledBorder(null, "Datos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelDatos.setBounds(30, 121, 383, 221);
+		panelDatos.setBounds(699, 132, 383, 221);
 		contentPane.add(panelDatos);
 		panelDatos.setLayout(null);
 		  
@@ -451,16 +450,9 @@ public class ObjtHerramienta extends JFrame {
 		      txtVCyRect.setBounds(231, 160, 31, 20);
 		      panelRectangulo.add(txtVCyRect);
 		
-		JPanel panelFigura = new JPanel();
-		panelFigura.setBorder(new TitledBorder(null, "Figura 3D", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelFigura.setBounds(945, 11, 189, 66);
-		contentPane.add(panelFigura);
-		panelFigura.setLayout(null);
-		
 		JPanel panelResultados = new JPanel();
-		panelResultados.setVisible(false);
 		panelResultados.setBorder(new TitledBorder(null, "Resultados", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelResultados.setBounds(30, 353, 383, 245);
+		panelResultados.setBounds(699, 364, 383, 245);
 		contentPane.add(panelResultados);
 		panelResultados.setLayout(null);
 		
@@ -505,76 +497,21 @@ public class ObjtHerramienta extends JFrame {
 		txtATprisma.setColumns(10);
 		
 		JPanel panelBtns = new JPanel();
-		panelBtns.setBounds(1092, 682, 220, 46);
+		panelBtns.setBounds(1168, 682, 144, 46);
 		contentPane.add(panelBtns);
-		panelBtns.setLayout(null);
+		panelBtns.setLayout(new CardLayout(0, 0));
 		
 		JButton btnSalir = new JButton("Salir");
-		btnSalir.setBounds(10, 0, 89, 46);
-		panelBtns.add(btnSalir);
-		
-		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setBounds(121, 0, 89, 46);
-		panelBtns.add(btnSalvar);
-		btnSalvar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		panelBtns.add(btnSalir, "name_64091033486400");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					msgSalvar(e);
 			}
 		});
-		
-		pnbtnsSecundario = new JPanel();
-		pnbtnsSecundario.setBounds(30, 598, 383, 107);
-		contentPane.add(pnbtnsSecundario);
-		pnbtnsSecundario.setLayout(null);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(220, 11, 129, 31);
-		pnbtnsSecundario.add(panel_2);
-		panel_2.setLayout(new CardLayout(0, 0));
-		
-		btnGraficar = new JButton("Graficar");
-		btnGraficar.setEnabled(false);
-		btnGraficar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String tipo ;
-				tipo = String.valueOf(cbxPrismas.getSelectedItem()) ;			
-			
-						//INCLUIR El Validador antes de graficar
-				Graficar(tipo);
-
-			}
-		});
-		btnGraficar.setLocation(132, 0);
-		panel_2.add(btnGraficar, "name_1079070842300");
-		
-		panel_1 = new JPanel();
-		panel_1.setBounds(132, 53, 129, 31);
-		pnbtnsSecundario.add(panel_1);
-		panel_1.setLayout(null);
-		
-		btnLimpiar = new JButton("Limpiar");
-		btnLimpiar.setEnabled(false);
-		btnLimpiar.setSize(129, 31);
-		btnLimpiar.setLocation(0, 0);
-		panel_1.add(btnLimpiar);
-		
-		pn_btnCalcular = new JPanel();
-		pn_btnCalcular.setBounds(28, 11, 149, 31);
-		pnbtnsSecundario.add(pn_btnCalcular);
-		pn_btnCalcular.setLayout(new CardLayout(0, 0));
-		
-		btnCalcular = new JButton("Calcular");
-		btnCalcular.setEnabled(false);
-		btnCalcular.setLocation(132, 0);
-		pn_btnCalcular.add(btnCalcular, "name_1279219772400");
 		 
 		 JPanel panelTipoPrisma = new JPanel();
 		 panelTipoPrisma.setBorder(new TitledBorder(null, "Parametros del Prisma 3D", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		 panelTipoPrisma.setBounds(30, 0, 383, 115);
+		 panelTipoPrisma.setBounds(699, 11, 383, 115);
 		 contentPane.add(panelTipoPrisma);
 		 panelTipoPrisma.setLayout(null);
 		 
@@ -716,7 +653,7 @@ public class ObjtHerramienta extends JFrame {
 	 			btnGraficar.setEnabled(true);
 		 	}
 		 });
-		 cbxColor.setModel(new DefaultComboBoxModel<String>(new String[] {"< Seleccione >", "Blanco", "Azul", "Rojo", "Amarillo", "Verde", "Grisclaro"}));
+		 cbxColor.setModel(new DefaultComboBoxModel(new String[] {"< Seleccione >", "Blanco", "Azul", "Rojo", "Amarillo", "Verde", "Gris claro"}));
 		 cbxColor.setEnabled(false);
 		 cbxColor.setBounds(100, 54, 150, 22);
 		 panelTipoPrisma.add(cbxColor);
@@ -739,72 +676,123 @@ public class ObjtHerramienta extends JFrame {
 		 txtAlturaPrism.setColumns(10);
 		 txtAlturaPrism.setBounds(165, 87, 85, 20);
 		 panelTipoPrisma.add(txtAlturaPrism);
-		btnCalcular.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-			
-				String tipo ;//= "Cuadrado"; //Prueba;
-				tipo = String.valueOf(cbxPrismas.getSelectedItem()) ;			
+		 
+		 JPanel panel_2 = new JPanel();
+		 panel_2.setBounds(1153, 167, 144, 46);
+		 contentPane.add(panel_2);
+		 panel_2.setLayout(new CardLayout(0, 0));
+		 
+		 btnGraficar = new JButton("Graficar");
+		 btnGraficar.setEnabled(false);
+		 btnGraficar.addActionListener(new ActionListener() {
+		 	public void actionPerformed(ActionEvent e) {
+		 		String tipo ;
+		 		tipo = String.valueOf(cbxPrismas.getSelectedItem()) ;			
+		 	
+		 				//INCLUIR El Validador antes de graficar
+		 		Graficar(tipo);
+
+		 	}
+		 });
+		 btnGraficar.setLocation(132, 0);
+		 panel_2.add(btnGraficar, "name_1079070842300");
+		 
+		 panel_1 = new JPanel();
+		 panel_1.setBounds(1153, 212, 144, 46);
+		 contentPane.add(panel_1);
+		 panel_1.setLayout(new CardLayout(0, 0));
+		 
+		 btnLimpiar = new JButton("Limpiar");
+		 btnLimpiar.setEnabled(false);
+		 panel_1.add(btnLimpiar, "name_63570059247400");
+		 
+		 pn_btnCalcular = new JPanel();
+		 pn_btnCalcular.setBounds(1153, 257, 144, 46);
+		 contentPane.add(pn_btnCalcular);
+		 pn_btnCalcular.setLayout(new CardLayout(0, 0));
+		 
+		 btnCalcular = new JButton("Calcular");
+		 btnCalcular.setEnabled(false);
+		 btnCalcular.setLocation(132, 0);
+		 pn_btnCalcular.add(btnCalcular, "name_1279219772400");
+		 
+		 JPanel panel = new JPanel();
+		 panel.setBounds(1153, 302, 144, 46);
+		 contentPane.add(panel);
+		 panel.setLayout(new CardLayout(0, 0));
+		 
+		 JButton btnSalvar = new JButton("Salvar");
+		 panel.add(btnSalvar, "name_64044228698400");
+		 btnSalvar.addActionListener(new ActionListener() {
+		 	public void actionPerformed(ActionEvent e) {
+		 	}
+		 });
+		 btnCalcular.addActionListener(new ActionListener() {
+		 	
+		 	public void actionPerformed(ActionEvent e) {
+		 	
+		 		String tipo ;//= "Cuadrado"; //Prueba;
+		 		tipo = String.valueOf(cbxPrismas.getSelectedItem()) ;			
 //				tipo = cbxPrismas.getItemAt( cbxPrismas.getSelectedItem() );
-				//INCLUIR El Validador antes de graficar
-				Calcular(tipo);
-			
-				//Graficar(tipo);
-				
-			}
-		});
-		btnLimpiar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				defaultPanel();
-				cbxPrismas.setSelectedIndex(0);
-				cbxPrismas.setEnabled(true);
-				cbxColor.setSelectedIndex(0);
-				cbxColor.setEnabled(false);
-				
-				txtVAxCuad.setText(null);
-				txtVAyCuad.setText(null);
-				txtVBxCuad.setText(null);
-				txtVByCuad.setText(null);
-				
-				txtVAxTria.setText(null);
-				txtVAyTria.setText(null);
-				txtVCxTria.setText(null);
-				txtVCyTria.setText(null);
-				txtVMxTria.setText(null);
-				txtVMyTria.setText(null);
-				
-				txtVAxRect.setText(null);
-				txtVAyRect.setText(null);
-				txtVBxRect.setText(null);
-				txtVByRect.setText(null);
-				txtVCxRect.setText(null);
-				txtVCyRect.setText(null);
-				
-				txtVAxRomb.setText(null);
-				txtVAyRomb.setText(null);
-				txtDiametroVert.setText(null);
-				txtDiametroHoriz.setText(null);
-				
-				txtVAxTrap.setText(null);
-				txtVAyTrap.setText(null);
-				txtVBxTrap.setText(null);
-				txtVByTrap.setText(null);
-				txtVCxTrap.setText(null);
-				txtVCyTrap.setText(null);
-				txtVDxTrap.setText(null);
-				txtVDyTrap.setText(null);
-				
-				txtVbase.setText(null);
-				txtVLprisma.setText(null);
-				txtVbase.setText(null);
-				txtALprisma.setText(null);
-				txtATprisma.setText(null);
-				txtLongAlturaTrap.setText(null);
-		
-				
-			}
-		});
+		 		//INCLUIR El Validador antes de graficar
+		 		Calcular(tipo);
+		 	
+		 		//Graficar(tipo);
+		 		
+		 	}
+		 });
+		 btnLimpiar.addActionListener(new ActionListener() {
+		 	public void actionPerformed(ActionEvent e) {
+		 		
+		 		defaultPanel();
+		 		cbxPrismas.setSelectedIndex(0);
+		 		cbxPrismas.setEnabled(true);
+		 		cbxColor.setSelectedIndex(0);
+		 		cbxColor.setEnabled(false);
+		 		
+		 		txtVAxCuad.setText(null);
+		 		txtVAyCuad.setText(null);
+		 		txtVBxCuad.setText(null);
+		 		txtVByCuad.setText(null);
+		 		
+		 		txtVAxTria.setText(null);
+		 		txtVAyTria.setText(null);
+		 		txtVCxTria.setText(null);
+		 		txtVCyTria.setText(null);
+		 		txtVMxTria.setText(null);
+		 		txtVMyTria.setText(null);
+		 		
+		 		txtVAxRect.setText(null);
+		 		txtVAyRect.setText(null);
+		 		txtVBxRect.setText(null);
+		 		txtVByRect.setText(null);
+		 		txtVCxRect.setText(null);
+		 		txtVCyRect.setText(null);
+		 		
+		 		txtVAxRomb.setText(null);
+		 		txtVAyRomb.setText(null);
+		 		txtDiametroVert.setText(null);
+		 		txtDiametroHoriz.setText(null);
+		 		
+		 		txtVAxTrap.setText(null);
+		 		txtVAyTrap.setText(null);
+		 		txtVBxTrap.setText(null);
+		 		txtVByTrap.setText(null);
+		 		txtVCxTrap.setText(null);
+		 		txtVCyTrap.setText(null);
+		 		txtVDxTrap.setText(null);
+		 		txtVDyTrap.setText(null);
+		 		
+		 		txtVbase.setText(null);
+		 		txtVLprisma.setText(null);
+		 		txtVbase.setText(null);
+		 		txtALprisma.setText(null);
+		 		txtATprisma.setText(null);
+		 		txtLongAlturaTrap.setText(null);
+		 
+		 		
+		 	}
+		 });
 	}
 	
 	
@@ -877,7 +865,7 @@ public class ObjtHerramienta extends JFrame {
 		}
 		double altura = Double.valueOf(txtAlturaPrism.getText());
 		
-		double yC1 = y1, yC2 = y2; //Mejorar
+		//double yC1 = y1, yC2 = y2; //Mejorar
 		
 	/*
 	 * Contrucion de Vertices:
@@ -894,8 +882,13 @@ public class ObjtHerramienta extends JFrame {
 
 		switch (tipo) {
 		
-		case("Cuadrado")  :{ 				
-			panelCuadrado.setVisible(true);
+		case("Cuadrado")  :{ 			
+			
+			double lado = x2-x1;  //Diferencia de Vertices me da la longitud
+			if (lado<0) {
+				lado = lado*(-1); // Validando que la long. sea positiva
+			}
+			//panelCuadrado.setVisible(true);
 			
 			//Contruccion de Figura3D mediante la clase StdDraw3D
 			StdDraw3D.setCameraOrientation(0, 0, 0); // Angulos en x,y,z
@@ -906,34 +899,34 @@ public class ObjtHerramienta extends JFrame {
 			StdDraw3D.setPenColor(color);
 			//Se llama Overlay a la publicidad que se superpone como una capa superior sobre los vídeos en reproducción para mostrar información de empresas que pueden interesar a la clase de usuarios que ven esos vídeos en concreto.
 					//////////////Vertices Cara Frontal\\\\\\\\\\\\\\\\\\
-			double vXCf [] = new double [] {x1,x2,x3,x4};
-			double vYCf [] = new double [] {yC1,yC2,yC2,yC1};
+			double vXCf [] = new double [] {0,0,lado,lado};
+			double vYCf [] = new double [] {0,lado,lado,0};
 			double vZCf [] = new double [] {0,0,0,0}; // Coordenadas Nulas en el eje Z(imaginario)
 					
 			//////////////Vertices cara Fondo\\\\\\\\\\\\\\\\\\
-			double vXCff [] = new double [] {x1,x2,x3,x4};
-			double vYCff [] = new double [] {yC1,yC2,yC2,yC1};
+			double vXCff [] = new double [] {0,0,lado,lado};
+			double vYCff [] = new double [] {0,lado,lado,0};
 			double vZCff [] = new double [] {altura,altura,altura,altura}; // Coordenadas Nulas en el eje Z(imaginario)		
 		
 			////			//////////Vertices Cara Izquierda\\\\\\\\\\\\\\\\\\
-			double vXCi [] = new double [] {x1,x2,x3,x4};
-			double vYCi [] = new double [] {yC1,yC2,yC2,yC1};
-			double vZCi [] = new double [] {altura,altura,0,0}; // Coordenadas Nulas en el eje Z(imaginario)		
+			double vXCi [] = new double [] {0,0,0,0};
+			double vYCi [] = new double [] {0,lado,lado,0};
+			double vZCi [] = new double [] {0,0,altura,altura}; // Coordenadas Nulas en el eje Z(imaginario)		
 		
 			////			//////////Vertices Cara Derecha\\\\\\\\\\\\\\\\\\
-			double vXCd [] = new double [] {x1,x2,x3,x4};
-			double vYCd [] = new double [] {yC1,yC2,yC2,yC1};
-			double vZCd [] = new double [] {0,0,altura,altura}; // Coordenadas Nulas en el eje Z(imaginario)		
+			double vXCd [] = new double [] {lado,lado,lado,lado};
+			double vYCd [] = new double [] {0,lado,lado,0};
+			double vZCd [] = new double [] {altura,altura,0,0}; // Coordenadas Nulas en el eje Z(imaginario)		
 		
 			////			//////////Vertices Cara Superior\\\\\\\\\\\\\\\\\\
-			double vXCs [] = new double [] {x1,x2,x3,x4};
-			double vYCs [] = new double [] {yC2,yC2,yC2,yC2};
-			double vZCs [] = new double [] {altura,0,0,altura}; // Coordenadas Nulas en el eje Z(imaginario)		
+			double vXCs [] = new double [] {0,0,lado,lado};
+			double vYCs [] = new double [] {lado,lado,lado,lado};
+			double vZCs [] = new double [] {0,altura,altura,0}; // Coordenadas Nulas en el eje Z(imaginario)		
 		
 			////	//////////Vertices Cara Inferior\\\\\\\\\\\\\\\\\\
-			double vXCif [] = new double [] {x1,x2,x3,x4};
-			double vYCif [] = new double [] {yC1,yC1,yC1,yC1};
-			double vZCif [] = new double [] {altura,0,0,altura}; // Coordenadas Nulas en el eje Z(imaginario)			
+			double vXCif [] = new double [] {0,0,lado,lado};
+			double vYCif [] = new double [] {0,0,0,0};
+			double vZCif [] = new double [] {0,altura,altura,0}; // Coordenadas Nulas en el eje Z(imaginario)			
 	
 			//C. Frontal
 			PoligonoRotado(vXCf, vYCf, vZCff);
@@ -968,6 +961,67 @@ public class ObjtHerramienta extends JFrame {
 			StdDraw3D.clear3D();			// Limpiando para siguiente
 			StdDraw3D.setPenColor(color);
 			
+			double largo=0,anchura=0;
+			largo = x2-x1; anchura = y2-y1;
+			
+			if(x2-x1 == 0) 
+				largo = Math.abs(x3-x1); //Buscando el largo
+			if(y2-y1 == 0)
+				anchura = Math.abs(y3-y1);
+			
+					//////////////Vertices Rombo\\\\\\\\\\\\\\\\\\
+			//double x2Rombo = x1 - (d2/2), x3Rombo = x1, x4Rombo = x1+(d2/2); 
+			//double y2Rombo = y1- (d/2), y3Rombo = y1-d, y4Rombo = y2;
+			//////////////Vertices Cara Frontal\\\\\\\\\\\\\\\\\\
+			double vXCf [] = new double [] {0,0,largo,largo};
+			double vYCf [] = new double [] {0,anchura,anchura,0};
+			double vZCf [] = new double [] {0,0,0,0}; // Coordenadas Nulas en el eje Z(imaginario)
+					
+			//////////////Vertices cara Fondo\\\\\\\\\\\\\\\\\\
+			double vXCff [] = new double [] {0,0,largo,largo};
+			double vYCff [] = new double [] {0,anchura,anchura,0};
+			double vZCff [] = new double [] {altura,altura,altura,altura}; // Coordenadas Nulas en el eje Z(imaginario)		
+		
+			////			//////////Vertices Cara Izquierda\\\\\\\\\\\\\\\\\\
+			double vXCi [] = new double [] {0,0,0,0};
+			double vYCi [] = new double [] {0,anchura,anchura,0};
+			double vZCi [] = new double [] {0,0,altura,altura}; // Coordenadas Nulas en el eje Z(imaginario)		
+		
+			////			//////////Vertices Cara Derecha\\\\\\\\\\\\\\\\\\
+			double vXCd [] = new double [] {largo,largo,largo,largo};
+			double vYCd [] = new double [] {0,anchura,anchura,0};
+			double vZCd [] = new double [] {altura,altura,0,0}; // Coordenadas Nulas en el eje Z(imaginario)		
+		
+			////			//////////Vertices Cara Superior\\\\\\\\\\\\\\\\\\
+			double vXCs [] = new double [] {0,0,largo,largo};
+			double vYCs [] = new double [] {anchura,anchura,anchura,anchura};
+			double vZCs [] = new double [] {0,altura,altura,0}; // Coordenadas Nulas en el eje Z(imaginario)		
+		
+			////	//////////Vertices Cara Inferior\\\\\\\\\\\\\\\\\\
+			double vXCif [] = new double [] {0,0,largo,largo};
+			double vYCif [] = new double [] {0,0,0,0};
+			double vZCif [] = new double [] {0,altura,altura,0}; // Coordenadas Nulas en el eje Z(imaginario)			
+	
+			//C. Frontal
+			PoligonoRotado(vXCf, vYCf, vZCff);
+			//C. Fondo
+			PoligonoRotado(vXCff, vYCff, vZCff);
+			//C. Izquierda
+			PoligonoRotado(vXCi, vYCi, vZCi);
+			//C. Derecha
+			PoligonoRotado(vXCd, vYCd, vZCd);
+			//C. Superior
+			PoligonoRotado(vXCs, vYCs, vZCs);
+			//C.Inferior
+			PoligonoRotado(vXCif, vYCif, vZCif);
+			
+			//Adds Grafica
+			StdDraw3D.setPenColor(StdDraw3D.WHITE);
+			StdDraw3D.overlayText(0, -8, "Use el mouse para mover la figura");
+			
+			//Fase Final, Mostrando el Objeto de StdDraw3D
+			StdDraw3D.show();
+			
 			
 			break;}
 		
@@ -981,12 +1035,10 @@ public class ObjtHerramienta extends JFrame {
 			StdDraw3D.clear3D();			// Limpiando para siguiente
 			StdDraw3D.setPenColor(color);
 			
-					//////////////Vertices Rombo\\\\\\\\\\\\\\\\\\
-			//double x2Rombo = x1 - (d2/2), x3Rombo = x1, x4Rombo = x1+(d2/2); 
-			//double y2Rombo = y1- (d/2), y3Rombo = y1-d, y4Rombo = y2;
 			
+			break;
 			
-			break;}
+			}
 		
 		case("Triangulo") :{ 				
 			panelTriangulo.setVisible(true);
